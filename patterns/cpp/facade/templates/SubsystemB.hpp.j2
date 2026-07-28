@@ -1,0 +1,12 @@
+#pragma once
+#include <string>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ subsystem_b_class }} {
+public:
+    std::string {{ operation_method }}();
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
