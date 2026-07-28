@@ -1,0 +1,13 @@
+package {{ package }}
+
+class {{ invoker_class }} {
+    private var command: {{ command_class }}? = null
+
+    fun setCommand(command: {{ command_class }}) {
+        this.command = command
+    }
+
+    fun executeCommand() {
+        command?.execute()
+    }
+}
