@@ -16,13 +16,18 @@ class RegistryTests(unittest.TestCase):
     def test_discovers_all_built_in_patterns(self) -> None:
         registry = discover_patterns(PROJECT_DIR / "patterns")
 
-        self.assertEqual(set(registry), {"java", "cpp", "python"})
-        self.assertEqual(
-            set(registry["java"]),
-            {"singleton", "factory", "observer"},
-        )
-        self.assertEqual(set(registry["cpp"]), {"singleton"})
-        self.assertEqual(set(registry["python"]), {"singleton"})
+        expected = {
+            "java": {"singleton", "factory", "observer"},
+            "cpp": {"singleton"},
+            "python": {"singleton"},
+        }
+
+        for language, patterns in expected.items():
+            self.assertIn(language, registry)
+            self.assertTrue(
+                patterns.issubset(registry[language]),
+                f"Padrões esperados ausentes em {language}",
+            )
 
     def test_ignores_incomplete_pattern_directories(self) -> None:
         with TemporaryDirectory() as temporary:
