@@ -1,0 +1,1 @@
+"""C REACTOR pattern template."""
