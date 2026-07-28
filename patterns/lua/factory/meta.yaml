@@ -1,0 +1,34 @@
+pattern: factory
+description: Factory Method Lua com Creator delegando a criação de Product para subclasses.
+fields:
+  - name: module_name
+    default: factory
+    prompt: Nome do módulo Lua
+    required: true
+  - name: product_class
+    default: Product
+    prompt: Nome da classe Product
+    required: true
+  - name: concrete_product_class
+    default: ConcreteProduct
+    prompt: Nome do ConcreteProduct
+    required: true
+  - name: creator_class
+    default: Creator
+    prompt: Nome da classe Creator
+    required: true
+  - name: concrete_creator_class
+    default: ConcreteCreator
+    prompt: Nome do ConcreteCreator
+    required: true
+  - name: factory_method
+    default: createProduct
+    prompt: Nome do factory method
+    required: true
+  - name: output_dir
+    default: src
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: factory.lua.j2
+    output_path: "{{ output_dir }}/{{ module_name }}.lua"
