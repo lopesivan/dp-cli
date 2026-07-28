@@ -1,0 +1,51 @@
+-- Facade Pattern em Lua
+
+local {{ subsystem_a_class }} = {}
+{{ subsystem_a_class }}.__index = {{ subsystem_a_class }}
+
+function {{ subsystem_a_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ subsystem_a_class }})
+    return obj
+end
+
+function {{ subsystem_a_class }}:{{ operation_method }}()
+    return "{{ subsystem_a_class }}.{{ operation_method }}"
+end
+
+local {{ subsystem_b_class }} = {}
+{{ subsystem_b_class }}.__index = {{ subsystem_b_class }}
+
+function {{ subsystem_b_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ subsystem_b_class }})
+    return obj
+end
+
+function {{ subsystem_b_class }}:{{ operation_method }}()
+    return "{{ subsystem_b_class }}.{{ operation_method }}"
+end
+
+local {{ facade_class }} = {}
+{{ facade_class }}.__index = {{ facade_class }}
+
+function {{ facade_class }}:new()
+    local obj = {
+        _subsystemA = {{ subsystem_a_class }}:new(),
+        _subsystemB = {{ subsystem_b_class }}:new()
+    }
+    setmetatable(obj, {{ facade_class }})
+    return obj
+end
+
+function {{ facade_class }}:{{ facade_method }}()
+    local resultA = self._subsystemA:{{ operation_method }}()
+    local resultB = self._subsystemB:{{ operation_method }}()
+    return resultA .. " + " .. resultB
+end
+
+return {
+    SubsystemA = {{ subsystem_a_class }},
+    SubsystemB = {{ subsystem_b_class }},
+    Facade = {{ facade_class }}
+}
