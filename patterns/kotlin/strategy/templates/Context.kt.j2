@@ -1,0 +1,11 @@
+package {{ package }}
+
+class {{ context_class }}(private var strategy: {{ strategy_class }}) {
+    fun setStrategy(strategy: {{ strategy_class }}) {
+        this.strategy = strategy
+    }
+
+    fun run(input: String): String {
+        return strategy.{{ execute_method }}(input)
+    }
+}
