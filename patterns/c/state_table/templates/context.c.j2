@@ -1,0 +1,64 @@
+#include "{{ prefix }}_{{ context_name }}.h"
+#include <stdlib.h>
+
+{% set state_list = states.split(',') %}
+{% set event_list = events.split(',') %}
+
+typedef enum
+{
+  {% for state in state_list %}
+  {{ state | trim }}{% if not loop.last %},{% endif %}
+  {% endfor %}
+} State;
+
+typedef enum
+{
+  {% for event in event_list %}
+  {{ event | trim }}{% if not loop.last %},{% endif %}
+  {% endfor %}
+} Event;
+
+struct {{ prefix }}_{{ context_name }}
+{
+    State state;
+    /* Add your context data here */
+    int placeholder;
+};
+
+#define NO_OF_STATES {{ state_list | length }}
+#define NO_OF_EVENTS {{ event_list | length }}
+
+static State TransitionTable[NO_OF_STATES][NO_OF_EVENTS] =
+{
+    {% for state in state_list %}
+    { {% for event in event_list %}
+        {{ state | trim }}{% if not loop.last %}, {% endif %}
+      {% endfor %} }{% if not loop.last %},{% endif %}
+    {% endfor %}
+};
+
+{{ prefix }}_{{ context_name }}Ptr
+{{ prefix }}_{{ context_name }}_create(void)
+{
+    {{ prefix }}_{{ context_name }}Ptr instance = malloc(sizeof(*instance));
+    if (instance != NULL) {
+        instance->state = {{ state_list[0] | trim }};
+        instance->placeholder = 0;
+    }
+    return instance;
+}
+
+void
+{{ prefix }}_{{ context_name }}_destroy({{ prefix }}_{{ context_name }}Ptr instance)
+{
+    free(instance);
+}
+
+{% for state in state_list %}
+void
+{{ prefix }}_{{ context_name }}_{{ state | trim }}({{ prefix }}_{{ context_name }}Ptr instance)
+{
+    const State currentState = instance->state;
+    instance->state = TransitionTable[currentState][{{ state | trim }}];
+}
+{% endfor %}
