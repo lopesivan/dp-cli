@@ -1,0 +1,19 @@
+class {{ subsystem_a_class }}:
+    def {{ operation_method }}(self) -> str:
+        return "{{ subsystem_a_class }}.{{ operation_method }}"
+
+
+class {{ subsystem_b_class }}:
+    def {{ operation_method }}(self) -> str:
+        return "{{ subsystem_b_class }}.{{ operation_method }}"
+
+
+class {{ facade_class }}:
+    def __init__(self) -> None:
+        self._subsystem_a = {{ subsystem_a_class }}()
+        self._subsystem_b = {{ subsystem_b_class }}()
+
+    def {{ facade_method }}(self) -> str:
+        result_a = self._subsystem_a.{{ operation_method }}()
+        result_b = self._subsystem_b.{{ operation_method }}()
+        return f"{result_a} + {result_b}"
