@@ -1,0 +1,14 @@
+#ifndef {{ prefix | upper }}_{{ state_name | upper }}_H
+#define {{ prefix | upper }}_{{ state_name | upper }}_H
+
+typedef struct {{ prefix }}_{{ state_name }}* {{ prefix }}_{{ state_name }}Ptr;
+
+void {{ prefix }}_{{ state_name }}_defaultImplementation({{ prefix }}_{{ state_name }}Ptr state);
+
+{% set event_list = events.split(',') %}
+/* Transition functions for each state */
+{% for event in event_list %}
+void {{ prefix }}_{{ state_name }}_transitionTo{{ event | trim | capitalize }}({{ prefix }}_{{ state_name }}Ptr state);
+{% endfor %}
+
+#endif /* {{ prefix | upper }}_{{ state_name | upper }}_H */
