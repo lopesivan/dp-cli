@@ -1,0 +1,40 @@
+pattern: template_method
+description: Template Method Kotlin com AbstractClass definindo o esqueleto do algoritmo e ConcreteClass sobrescrevendo os passos variáveis.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Kotlin
+    required: true
+  - name: abstract_class
+    default: AbstractClass
+    prompt: Nome da classe base abstrata
+    required: true
+  - name: concrete_class
+    default: ConcreteClass
+    prompt: Nome da subclasse concreta
+    required: true
+  - name: template_method_name
+    default: templateMethod
+    prompt: Nome do método template (algoritmo fixo)
+    required: true
+  - name: step1_method
+    default: step1
+    prompt: Nome do primeiro passo variável
+    required: true
+  - name: step2_method
+    default: step2
+    prompt: Nome do segundo passo variável
+    required: true
+  - name: hook_method
+    default: hook
+    prompt: Nome do hook opcional (passo com implementação padrão)
+    required: true
+  - name: output_dir
+    default: src/main/kotlin/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: AbstractClass.kt.j2
+    output_path: "{{ output_dir }}/{{ abstract_class }}.kt"
+  - template: ConcreteClass.kt.j2
+    output_path: "{{ output_dir }}/{{ concrete_class }}.kt"
