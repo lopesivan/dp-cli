@@ -1,0 +1,1 @@
+"""Kotlin Strategy pattern template."""
