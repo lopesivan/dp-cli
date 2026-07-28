@@ -1,0 +1,7 @@
+package {{ package }}
+
+class {{ concrete_decorator_class }}(wrapee: {{ component_class }}) : {{ decorator_class }}(wrapee) {
+    override fun {{ operation_method }}(): String {
+        return "{{ concrete_decorator_class }}(" + super.{{ operation_method }}() + ")"
+    }
+}
