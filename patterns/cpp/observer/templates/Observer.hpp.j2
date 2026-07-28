@@ -1,0 +1,13 @@
+#pragma once
+#include <string>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ observer_class }} {
+public:
+    virtual ~{{ observer_class }}() = default;
+    virtual void {{ update_method }}(const std::string& state) = 0;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
