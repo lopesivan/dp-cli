@@ -1,0 +1,32 @@
+pattern: state_table
+description: State Pattern em C usando tabela de transição de estados (table-driven).
+fields:
+  - name: prefix
+    default: app
+    prompt: Prefixo para as funções
+    required: true
+  - name: context_name
+    default: Context
+    prompt: Nome do contexto (ex: DigitalStopWatch)
+    required: true
+  - name: states
+    default: "stopped,started"
+    prompt: Lista de estados (separados por vírgula)
+    required: true
+  - name: events
+    default: "stopEvent,startEvent"
+    prompt: Lista de eventos (separados por vírgula)
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: context.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ context_name }}.h"
+  - template: context.c.j2
+    output_path: "{{ source_dir }}/{{ prefix }}_{{ context_name }}.c"
