@@ -1,0 +1,7 @@
+package {{ package }}
+
+class {{ concrete_command_class }}(private val receiver: {{ receiver_class }}) : {{ command_class }} {
+    override fun execute() {
+        receiver.{{ action_method }}()
+    }
+}
