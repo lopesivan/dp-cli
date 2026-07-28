@@ -1,0 +1,32 @@
+from abc import ABC, abstractmethod
+
+
+class {{ command_class }}(ABC):
+    @abstractmethod
+    def execute(self) -> None:
+        ...
+
+
+class {{ receiver_class }}:
+    def {{ action_method }}(self) -> None:
+        print("{{ receiver_class }}.{{ action_method }} executado")
+
+
+class {{ concrete_command_class }}({{ command_class }}):
+    def __init__(self, receiver: {{ receiver_class }}) -> None:
+        self._receiver = receiver
+
+    def execute(self) -> None:
+        self._receiver.{{ action_method }}()
+
+
+class {{ invoker_class }}:
+    def __init__(self) -> None:
+        self._command: {{ command_class }} | None = None
+
+    def set_command(self, command: {{ command_class }}) -> None:
+        self._command = command
+
+    def execute_command(self) -> None:
+        if self._command is not None:
+            self._command.execute()
