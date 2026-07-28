@@ -1,0 +1,22 @@
+#include "{{ composite_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+void {{ composite_class }}::{{ add_method }}(std::unique_ptr<{{ component_class }}> child) {
+    children_.push_back(std::move(child));
+}
+
+std::string {{ composite_class }}::{{ operation_method }}() const {
+    std::string result = "(";
+    for (size_t i = 0; i < children_.size(); ++i) {
+        if (i > 0) {
+            result += "+";
+        }
+        result += children_[i]->{{ operation_method }}();
+    }
+    result += ")";
+    return result;
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
