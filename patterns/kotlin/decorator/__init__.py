@@ -1,0 +1,1 @@
+"""Kotlin Decorator pattern template."""
