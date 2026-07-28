@@ -1,0 +1,10 @@
+#include "{{ decorator_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+std::string {{ decorator_class }}::{{ operation_method }}() {
+    return wrapee_->{{ operation_method }}();
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
