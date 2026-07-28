@@ -1,0 +1,18 @@
+#pragma once
+#include <memory>
+#include <vector>
+#include "{{ component_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ composite_class }} : public {{ component_class }} {
+public:
+    void {{ add_method }}(std::unique_ptr<{{ component_class }}> child);
+    std::string {{ operation_method }}() const override;
+
+private:
+    std::vector<std::unique_ptr<{{ component_class }}>> children_;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
