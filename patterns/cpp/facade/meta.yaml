@@ -1,0 +1,48 @@
+pattern: facade
+description: Facade C++ simplificando o acesso a um subsistema com múltiplas partes.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: facade_class
+    default: Facade
+    prompt: Nome da classe Facade
+    required: true
+  - name: subsystem_a_class
+    default: SubsystemA
+    prompt: Nome do primeiro Subsystem
+    required: true
+  - name: subsystem_b_class
+    default: SubsystemB
+    prompt: Nome do segundo Subsystem
+    required: true
+  - name: operation_method
+    default: Operation
+    prompt: Nome do método de cada Subsystem
+    required: true
+  - name: facade_method
+    default: PerformOperation
+    prompt: Nome do método unificado no Facade
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: SubsystemA.hpp.j2
+    output_path: "{{ header_dir }}/{{ subsystem_a_class }}.hpp"
+  - template: SubsystemA.cpp.j2
+    output_path: "{{ source_dir }}/{{ subsystem_a_class }}.cpp"
+  - template: SubsystemB.hpp.j2
+    output_path: "{{ header_dir }}/{{ subsystem_b_class }}.hpp"
+  - template: SubsystemB.cpp.j2
+    output_path: "{{ source_dir }}/{{ subsystem_b_class }}.cpp"
+  - template: Facade.hpp.j2
+    output_path: "{{ header_dir }}/{{ facade_class }}.hpp"
+  - template: Facade.cpp.j2
+    output_path: "{{ source_dir }}/{{ facade_class }}.cpp"
