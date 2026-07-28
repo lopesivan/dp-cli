@@ -1,0 +1,34 @@
+pattern: facade
+description: Facade Lua simplificando o acesso a um subsistema com múltiplas partes.
+fields:
+  - name: module_name
+    default: facade
+    prompt: Nome do módulo Lua
+    required: true
+  - name: facade_class
+    default: Facade
+    prompt: Nome da classe Facade
+    required: true
+  - name: subsystem_a_class
+    default: SubsystemA
+    prompt: Nome do primeiro Subsystem
+    required: true
+  - name: subsystem_b_class
+    default: SubsystemB
+    prompt: Nome do segundo Subsystem
+    required: true
+  - name: operation_method
+    default: operation
+    prompt: Nome do método de cada Subsystem
+    required: true
+  - name: facade_method
+    default: performOperation
+    prompt: Nome do método unificado no Facade
+    required: true
+  - name: output_dir
+    default: src
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: facade.lua.j2
+    output_path: "{{ output_dir }}/{{ module_name }}.lua"
