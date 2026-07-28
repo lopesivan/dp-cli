@@ -1,0 +1,14 @@
+package {{ package }}
+
+private class ConcreteProductA1 : {{ product_a_class }} {
+    override fun name(): String = "ConcreteProductA1"
+}
+
+private class ConcreteProductB1 : {{ product_b_class }} {
+    override fun name(): String = "ConcreteProductB1"
+}
+
+class {{ concrete_factory1_class }} : {{ abstract_factory_class }} {
+    override fun {{ create_product_a_method }}(): {{ product_a_class }} = ConcreteProductA1()
+    override fun {{ create_product_b_method }}(): {{ product_b_class }} = ConcreteProductB1()
+}
