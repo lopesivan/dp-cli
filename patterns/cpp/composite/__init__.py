@@ -1,0 +1,1 @@
+"""C++ Composite pattern template."""
