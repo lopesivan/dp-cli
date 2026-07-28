@@ -1,0 +1,7 @@
+package {{ package }}
+
+class {{ adapter_class }}(private val adaptee: {{ adaptee_class }}) : {{ target_class }} {
+    override fun {{ request_method }}(): String {
+        return adaptee.{{ specific_request_method }}()
+    }
+}
