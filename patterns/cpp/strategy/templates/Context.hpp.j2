@@ -1,0 +1,17 @@
+#pragma once
+#include "{{ strategy_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ context_class }} {
+public:
+    explicit {{ context_class }}({{ strategy_class }}* strategy) : strategy_(strategy) {}
+    void SetStrategy({{ strategy_class }}* strategy) { strategy_ = strategy; }
+    std::string Run(const std::string& input);
+
+private:
+    {{ strategy_class }}* strategy_;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
