@@ -1,0 +1,1 @@
+"""Lua Adapter pattern template."""
