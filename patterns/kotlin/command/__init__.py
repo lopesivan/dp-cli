@@ -1,0 +1,1 @@
+"""Kotlin Command pattern template."""
