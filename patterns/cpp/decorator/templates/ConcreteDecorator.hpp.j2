@@ -1,0 +1,13 @@
+#pragma once
+#include "{{ decorator_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ concrete_decorator_class }} : public {{ decorator_class }} {
+public:
+    explicit {{ concrete_decorator_class }}({{ component_class }}* wrapee) : {{ decorator_class }}(wrapee) {}
+    std::string {{ operation_method }}() override;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
