@@ -1,0 +1,48 @@
+#include "{{ prefix }}_{{ context_name }}.h"
+#include <stdlib.h>
+#include <assert.h>
+
+struct {{ prefix }}_{{ context_name }}
+{
+    {{ prefix }}_{{ strategy_name }} strategy;
+    /* Add your context data here */
+    int placeholder;
+};
+
+{{ prefix }}_{{ context_name }}Ptr
+{{ prefix }}_{{ context_name }}_create(
+    {{ prefix }}_{{ strategy_name }} initialStrategy,
+    /* Add other parameters as needed */)
+{
+    {{ prefix }}_{{ context_name }}Ptr instance = malloc(sizeof(*instance));
+    if (instance != NULL) {
+        instance->strategy = initialStrategy;
+        instance->placeholder = 0;
+        /* Initialize other fields here */
+    }
+    return instance;
+}
+
+void
+{{ prefix }}_{{ context_name }}_destroy({{ prefix }}_{{ context_name }}Ptr instance)
+{
+    free(instance);
+}
+
+void
+{{ prefix }}_{{ context_name }}_changeStrategy(
+    {{ prefix }}_{{ context_name }}Ptr instance,
+    {{ prefix }}_{{ strategy_name }} newStrategy)
+{
+    assert(instance != NULL);
+    instance->strategy = newStrategy;
+}
+
+{{ strategy_func_return }}
+{{ prefix }}_{{ context_name }}_execute(
+    {{ prefix }}_{{ context_name }}Ptr instance,
+    {{ strategy_func_params }})
+{
+    assert(instance != NULL);
+    return instance->strategy({{ strategy_func_params | replace('double ', '') }});
+}
