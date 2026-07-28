@@ -1,0 +1,34 @@
+pattern: strategy
+description: Strategy Lua com Context delegando para uma implementação intercambiável.
+fields:
+  - name: module_name
+    default: strategy
+    prompt: Nome do módulo Lua
+    required: true
+  - name: strategy_class
+    default: Strategy
+    prompt: Nome da interface Strategy
+    required: true
+  - name: concrete_strategy_a_class
+    default: ConcreteStrategyA
+    prompt: Nome da primeira ConcreteStrategy
+    required: true
+  - name: concrete_strategy_b_class
+    default: ConcreteStrategyB
+    prompt: Nome da segunda ConcreteStrategy
+    required: true
+  - name: context_class
+    default: Context
+    prompt: Nome da classe Context
+    required: true
+  - name: execute_method
+    default: execute
+    prompt: Nome do método executado pela Strategy
+    required: true
+  - name: output_dir
+    default: src
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: strategy.lua.j2
+    output_path: "{{ output_dir }}/{{ module_name }}.lua"
