@@ -1,0 +1,1 @@
+"""Python Composite pattern template."""
