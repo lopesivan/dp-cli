@@ -1,0 +1,1 @@
+"""C++ Facade pattern template."""
