@@ -1,0 +1,1 @@
+"""Python Facade pattern template."""
