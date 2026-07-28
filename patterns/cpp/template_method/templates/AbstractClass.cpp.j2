@@ -1,0 +1,12 @@
+#include "{{ abstract_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+void {{ abstract_class }}::{{ template_method_name }}() {
+    {{ step1_method }}();
+    {{ step2_method }}();
+    {{ hook_method }}();
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
