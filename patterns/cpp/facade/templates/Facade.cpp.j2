@@ -1,0 +1,10 @@
+#include "{{ facade_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+std::string {{ facade_class }}::{{ facade_method }}() {
+    return subsystemA_.{{ operation_method }}() + " + " + subsystemB_.{{ operation_method }}();
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
