@@ -1,0 +1,17 @@
+package {{ package }}
+
+abstract class {{ abstract_class }} {
+
+    fun {{ template_method_name }}() {
+        {{ step1_method }}()
+        {{ step2_method }}()
+        {{ hook_method }}()
+    }
+
+    protected abstract fun {{ step1_method }}()
+    protected abstract fun {{ step2_method }}()
+
+    protected open fun {{ hook_method }}() {
+        // hook opcional: subclasses podem sobrescrever se precisarem
+    }
+}
