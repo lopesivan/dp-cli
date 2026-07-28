@@ -1,0 +1,18 @@
+#pragma once
+#include <string>
+#include "{{ subsystem_a_class }}.hpp"
+#include "{{ subsystem_b_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ facade_class }} {
+public:
+    std::string {{ facade_method }}();
+
+private:
+    {{ subsystem_a_class }} subsystemA_;
+    {{ subsystem_b_class }} subsystemB_;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
