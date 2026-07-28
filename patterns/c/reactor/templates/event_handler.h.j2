@@ -1,0 +1,16 @@
+#ifndef {{ prefix | upper }}_{{ event_handler_name | upper }}_H
+#define {{ prefix | upper }}_{{ event_handler_name | upper }}_H
+
+#include "{{ prefix }}_{{ handle_type }}.h"
+
+/* All interaction from Reactor to an event handler goes through function pointers */
+typedef {{ prefix }}_{{ handle_type }} (*{{ prefix | upper }}_{{ get_handle_method | upper }}Func)(void* instance);
+typedef void (*{{ prefix | upper }}_{{ handle_event_method | upper }}Func)(void* instance);
+
+typedef struct {
+    void* instance;
+    {{ prefix | upper }}_{{ get_handle_method | upper }}Func {{ get_handle_method }};
+    {{ prefix | upper }}_{{ handle_event_method | upper }}Func {{ handle_event_method }};
+} {{ prefix }}_{{ event_handler_name }};
+
+#endif /* {{ prefix | upper }}_{{ event_handler_name | upper }}_H */
