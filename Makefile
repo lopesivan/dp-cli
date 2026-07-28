@@ -15,13 +15,13 @@ $(PYTHON):
 
 update: install
 
-list: install
+list:
 	$(DP) --list
 
 run: install
 	$(DP) $(ARGS)
 
-test: install
+test:
 	$(PYTHON) -m unittest discover -s tests -v
 
 clean:
