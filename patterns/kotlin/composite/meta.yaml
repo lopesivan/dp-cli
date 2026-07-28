@@ -1,0 +1,38 @@
+pattern: composite
+description: Composite Kotlin com Component, Leaf e Composite formando uma estrutura de árvore recursiva.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Kotlin
+    required: true
+  - name: component_class
+    default: Component
+    prompt: Nome da interface Component
+    required: true
+  - name: leaf_class
+    default: Leaf
+    prompt: Nome da classe Leaf
+    required: true
+  - name: composite_class
+    default: Composite
+    prompt: Nome da classe Composite
+    required: true
+  - name: operation_method
+    default: operation
+    prompt: Nome do método comum a Leaf e Composite
+    required: true
+  - name: add_method
+    default: add
+    prompt: Nome do método que adiciona um filho ao Composite
+    required: true
+  - name: output_dir
+    default: src/main/kotlin/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: Component.kt.j2
+    output_path: "{{ output_dir }}/{{ component_class }}.kt"
+  - template: Leaf.kt.j2
+    output_path: "{{ output_dir }}/{{ leaf_class }}.kt"
+  - template: Composite.kt.j2
+    output_path: "{{ output_dir }}/{{ composite_class }}.kt"
