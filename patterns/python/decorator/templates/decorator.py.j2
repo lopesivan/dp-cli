@@ -1,0 +1,25 @@
+from abc import ABC, abstractmethod
+
+
+class {{ component_class }}(ABC):
+    @abstractmethod
+    def {{ operation_method }}(self) -> str:
+        ...
+
+
+class {{ concrete_component_class }}({{ component_class }}):
+    def {{ operation_method }}(self) -> str:
+        return "{{ concrete_component_class }}"
+
+
+class {{ decorator_class }}({{ component_class }}):
+    def __init__(self, wrapee: {{ component_class }}) -> None:
+        self._wrapee = wrapee
+
+    def {{ operation_method }}(self) -> str:
+        return self._wrapee.{{ operation_method }}()
+
+
+class {{ concrete_decorator_class }}({{ decorator_class }}):
+    def {{ operation_method }}(self) -> str:
+        return f"{{ concrete_decorator_class }}({super().{{ operation_method }}()})"
