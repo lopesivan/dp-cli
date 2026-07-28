@@ -1,0 +1,30 @@
+#include "{{ prefix }}_{{ struct_name }}.h"
+#include <stdlib.h>
+
+struct {{ prefix }}_{{ struct_name }}
+{
+    int placeholder;
+};
+
+static {{ prefix }}_{{ struct_name }}* instance = NULL;
+
+{{ prefix }}_{{ struct_name }}*
+{{ prefix }}_{{ struct_name }}_{{ instance_func }}(void)
+{
+    if (instance == NULL)
+    {
+        instance = malloc(sizeof(*instance));
+        instance->placeholder = 0;
+    }
+    return instance;
+}
+
+void
+{{ prefix }}_{{ struct_name }}_destroy(void)
+{
+    if (instance != NULL)
+    {
+        free(instance);
+        instance = NULL;
+    }
+}
