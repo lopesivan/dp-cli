@@ -1,0 +1,28 @@
+#include "{{ subject_class }}.hpp"
+#include <algorithm>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+void {{ subject_class }}::Attach({{ observer_class }}* observer) {
+    observers_.push_back(observer);
+}
+
+void {{ subject_class }}::Detach({{ observer_class }}* observer) {
+    observers_.erase(
+        std::remove(observers_.begin(), observers_.end(), observer),
+        observers_.end());
+}
+
+void {{ subject_class }}::SetState(const std::string& state) {
+    state_ = state;
+    NotifyObservers();
+}
+
+void {{ subject_class }}::NotifyObservers() {
+    for (auto* observer : observers_) {
+        observer->{{ update_method }}(state_);
+    }
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
