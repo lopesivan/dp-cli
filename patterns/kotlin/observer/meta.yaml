@@ -1,0 +1,34 @@
+pattern: observer
+description: Observer Kotlin com Subject notificando ConcreteObserver.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Kotlin
+    required: true
+  - name: subject_class
+    default: Subject
+    prompt: Nome da classe Subject
+    required: true
+  - name: observer_class
+    default: Observer
+    prompt: Nome da interface Observer
+    required: true
+  - name: concrete_observer_class
+    default: ConcreteObserver
+    prompt: Nome do ConcreteObserver
+    required: true
+  - name: update_method
+    default: update
+    prompt: Nome do método de notificação
+    required: true
+  - name: output_dir
+    default: src/main/kotlin/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: Observer.kt.j2
+    output_path: "{{ output_dir }}/{{ observer_class }}.kt"
+  - template: Subject.kt.j2
+    output_path: "{{ output_dir }}/{{ subject_class }}.kt"
+  - template: ConcreteObserver.kt.j2
+    output_path: "{{ output_dir }}/{{ concrete_observer_class }}.kt"
