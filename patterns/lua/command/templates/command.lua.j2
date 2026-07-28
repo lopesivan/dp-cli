@@ -1,0 +1,69 @@
+-- Command Pattern em Lua
+
+local {{ command_class }} = {}
+{{ command_class }}.__index = {{ command_class }}
+
+function {{ command_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ command_class }})
+    return obj
+end
+
+function {{ command_class }}:execute()
+    error("Método abstrato execute() deve ser implementado")
+end
+
+local {{ receiver_class }} = {}
+{{ receiver_class }}.__index = {{ receiver_class }}
+
+function {{ receiver_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ receiver_class }})
+    return obj
+end
+
+function {{ receiver_class }}:{{ action_method }}()
+    print("{{ receiver_class }}.{{ action_method }} executado")
+end
+
+local {{ concrete_command_class }} = setmetatable({}, { __index = {{ command_class }} })
+{{ concrete_command_class }}.__index = {{ concrete_command_class }}
+
+function {{ concrete_command_class }}:new(receiver)
+    local obj = {{ command_class }}:new()
+    obj._receiver = receiver
+    setmetatable(obj, {{ concrete_command_class }})
+    return obj
+end
+
+function {{ concrete_command_class }}:execute()
+    self._receiver:{{ action_method }}()
+end
+
+local {{ invoker_class }} = {}
+{{ invoker_class }}.__index = {{ invoker_class }}
+
+function {{ invoker_class }}:new()
+    local obj = {
+        _command = nil
+    }
+    setmetatable(obj, {{ invoker_class }})
+    return obj
+end
+
+function {{ invoker_class }}:setCommand(command)
+    self._command = command
+end
+
+function {{ invoker_class }}:executeCommand()
+    if self._command then
+        self._command:execute()
+    end
+end
+
+return {
+    Command = {{ command_class }},
+    Receiver = {{ receiver_class }},
+    ConcreteCommand = {{ concrete_command_class }},
+    Invoker = {{ invoker_class }}
+}
