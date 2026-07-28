@@ -1,0 +1,23 @@
+package {{ package }}
+
+class {{ subject_class }} {
+    private val observers = mutableListOf<{{ observer_class }}>()
+    private var state: String = ""
+
+    fun attach(observer: {{ observer_class }}) {
+        observers.add(observer)
+    }
+
+    fun detach(observer: {{ observer_class }}) {
+        observers.remove(observer)
+    }
+
+    fun setState(newState: String) {
+        state = newState
+        notifyObservers()
+    }
+
+    private fun notifyObservers() {
+        observers.forEach { it.{{ update_method }}(state) }
+    }
+}
