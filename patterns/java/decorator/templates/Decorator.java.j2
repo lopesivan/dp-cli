@@ -1,0 +1,14 @@
+package {{ package }};
+
+public abstract class {{ decorator_class }} implements {{ component_class }} {
+    protected final {{ component_class }} wrapee;
+
+    protected {{ decorator_class }}({{ component_class }} wrapee) {
+        this.wrapee = wrapee;
+    }
+
+    @Override
+    public String {{ operation_method }}() {
+        return wrapee.{{ operation_method }}();
+    }
+}
