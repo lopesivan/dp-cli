@@ -1,0 +1,30 @@
+pattern: observer
+description: Observer Lua com Subject notificando ConcreteObserver.
+fields:
+  - name: module_name
+    default: observer
+    prompt: Nome do módulo Lua
+    required: true
+  - name: subject_class
+    default: Subject
+    prompt: Nome da classe Subject
+    required: true
+  - name: observer_class
+    default: Observer
+    prompt: Nome da interface Observer
+    required: true
+  - name: concrete_observer_class
+    default: ConcreteObserver
+    prompt: Nome do ConcreteObserver
+    required: true
+  - name: update_method
+    default: update
+    prompt: Nome do método de notificação
+    required: true
+  - name: output_dir
+    default: src
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: observer.lua.j2
+    output_path: "{{ output_dir }}/{{ module_name }}.lua"
