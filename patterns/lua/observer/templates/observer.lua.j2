@@ -1,0 +1,69 @@
+-- Observer Pattern em Lua
+
+local {{ observer_class }} = {}
+{{ observer_class }}.__index = {{ observer_class }}
+
+function {{ observer_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ observer_class }})
+    return obj
+end
+
+function {{ observer_class }}:{{ update_method }}(state)
+    error("Método abstrato {{ update_method }}() deve ser implementado")
+end
+
+local {{ subject_class }} = {}
+{{ subject_class }}.__index = {{ subject_class }}
+
+function {{ subject_class }}:new()
+    local obj = {
+        _observers = {},
+        _state = ""
+    }
+    setmetatable(obj, {{ subject_class }})
+    return obj
+end
+
+function {{ subject_class }}:attach(observer)
+    table.insert(self._observers, observer)
+end
+
+function {{ subject_class }}:detach(observer)
+    for i = #self._observers, 1, -1 do
+        if self._observers[i] == observer then
+            table.remove(self._observers, i)
+            break
+        end
+    end
+end
+
+function {{ subject_class }}:setState(state)
+    self._state = state
+    self:_notifyObservers()
+end
+
+function {{ subject_class }}:_notifyObservers()
+    for _, observer in ipairs(self._observers) do
+        observer:{{ update_method }}(self._state)
+    end
+end
+
+local {{ concrete_observer_class }} = setmetatable({}, { __index = {{ observer_class }} })
+{{ concrete_observer_class }}.__index = {{ concrete_observer_class }}
+
+function {{ concrete_observer_class }}:new()
+    local obj = {{ observer_class }}:new()
+    setmetatable(obj, {{ concrete_observer_class }})
+    return obj
+end
+
+function {{ concrete_observer_class }}:{{ update_method }}(state)
+    print(string.format("{{ concrete_observer_class }} recebeu: %s", state))
+end
+
+return {
+    Observer = {{ observer_class }},
+    Subject = {{ subject_class }},
+    ConcreteObserver = {{ concrete_observer_class }}
+}
