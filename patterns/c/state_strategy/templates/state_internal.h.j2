@@ -1,0 +1,19 @@
+#ifndef {{ prefix | upper }}_{{ state_name | upper }}_INTERNAL_H
+#define {{ prefix | upper }}_{{ state_name | upper }}_INTERNAL_H
+
+#include "{{ prefix }}_{{ state_name }}.h"
+
+{% set event_list = events.split(',') %}
+/* Function pointer types for each event */
+{% for event in event_list %}
+typedef void (*{{ prefix | upper }}_{{ event | trim | upper }}Func)({{ prefix }}_{{ state_name }}Ptr);
+{% endfor %}
+
+struct {{ prefix }}_{{ state_name }}
+{
+    {% for event in event_list %}
+    {{ prefix | upper }}_{{ event | trim | upper }}Func {{ event | trim }};
+    {% endfor %}
+};
+
+#endif /* {{ prefix | upper }}_{{ state_name | upper }}_INTERNAL_H */
