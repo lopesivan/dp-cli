@@ -1,0 +1,7 @@
+package {{ package }}
+
+class {{ concrete_observer_class }} : {{ observer_class }} {
+    override fun {{ update_method }}(state: String) {
+        println("{{ concrete_observer_class }} recebeu: $state")
+    }
+}
