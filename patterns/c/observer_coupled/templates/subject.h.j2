@@ -1,0 +1,13 @@
+#ifndef {{ prefix | upper }}_{{ subject_name | upper }}_H
+#define {{ prefix | upper }}_{{ subject_name | upper }}_H
+
+#include "{{ prefix }}_{{ notification_data_type }}.h"
+#include "{{ prefix }}_{{ observer_name }}.h"
+
+/* Initialize the subject with the observer */
+void {{ prefix }}_{{ subject_name }}_init({{ prefix }}_{{ observer_name }}Ptr observer);
+
+/* Start the subject (called once at application startup) */
+void {{ prefix }}_{{ subject_name }}_start(void);
+
+#endif /* {{ prefix | upper }}_{{ subject_name | upper }}_H */
