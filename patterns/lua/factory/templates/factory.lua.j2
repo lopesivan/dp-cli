@@ -1,0 +1,60 @@
+-- Factory Method Pattern em Lua
+
+local {{ product_class }} = {}
+{{ product_class }}.__index = {{ product_class }}
+
+function {{ product_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ product_class }})
+    return obj
+end
+
+function {{ product_class }}:name()
+    error("Método abstrato name() deve ser implementado")
+end
+
+local {{ concrete_product_class }} = setmetatable({}, { __index = {{ product_class }} })
+{{ concrete_product_class }}.__index = {{ concrete_product_class }}
+
+function {{ concrete_product_class }}:new()
+    local obj = {{ product_class }}:new()
+    setmetatable(obj, {{ concrete_product_class }})
+    return obj
+end
+
+function {{ concrete_product_class }}:name()
+    return "{{ concrete_product_class }}"
+end
+
+local {{ creator_class }} = {}
+{{ creator_class }}.__index = {{ creator_class }}
+
+function {{ creator_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ creator_class }})
+    return obj
+end
+
+function {{ creator_class }}:{{ factory_method }}()
+    error("Método abstrato {{ factory_method }}() deve ser implementado")
+end
+
+local {{ concrete_creator_class }} = setmetatable({}, { __index = {{ creator_class }} })
+{{ concrete_creator_class }}.__index = {{ concrete_creator_class }}
+
+function {{ concrete_creator_class }}:new()
+    local obj = {{ creator_class }}:new()
+    setmetatable(obj, {{ concrete_creator_class }})
+    return obj
+end
+
+function {{ concrete_creator_class }}:{{ factory_method }}()
+    return {{ concrete_product_class }}:new()
+end
+
+return {
+    Product = {{ product_class }},
+    ConcreteProduct = {{ concrete_product_class }},
+    Creator = {{ creator_class }},
+    ConcreteCreator = {{ concrete_creator_class }}
+}
