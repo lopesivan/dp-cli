@@ -1,0 +1,30 @@
+pattern: facade
+description: Facade Python simplificando o acesso a um subsistema com múltiplas partes.
+fields:
+  - name: facade_class
+    default: Facade
+    prompt: Nome da classe Facade
+    required: true
+  - name: subsystem_a_class
+    default: SubsystemA
+    prompt: Nome do primeiro Subsystem
+    required: true
+  - name: subsystem_b_class
+    default: SubsystemB
+    prompt: Nome do segundo Subsystem
+    required: true
+  - name: operation_method
+    default: operation
+    prompt: Nome do método de cada Subsystem
+    required: true
+  - name: facade_method
+    default: perform_operation
+    prompt: Nome do método unificado no Facade
+    required: true
+  - name: output_dir
+    default: src
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: facade.py.j2
+    output_path: "{{ output_dir }}/facade.py"
