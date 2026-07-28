@@ -1,0 +1,26 @@
+pattern: builder
+description: Builder Python com Director orquestrando a construção do Product.
+fields:
+  - name: product_class
+    default: Product
+    prompt: Nome da classe Product
+    required: true
+  - name: builder_class
+    default: Builder
+    prompt: Nome da interface Builder
+    required: true
+  - name: concrete_builder_class
+    default: ConcreteBuilder
+    prompt: Nome do ConcreteBuilder
+    required: true
+  - name: director_class
+    default: Director
+    prompt: Nome da classe Director
+    required: true
+  - name: output_dir
+    default: src
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: builder.py.j2
+    output_path: "{{ output_dir }}/builder.py"
