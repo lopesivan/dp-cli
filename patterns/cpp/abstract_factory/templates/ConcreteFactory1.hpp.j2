@@ -1,0 +1,13 @@
+#pragma once
+#include "{{ abstract_factory_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ concrete_factory1_class }} : public {{ abstract_factory_class }} {
+public:
+    std::unique_ptr<{{ product_a_class }}> {{ create_product_a_method }}() override;
+    std::unique_ptr<{{ product_b_class }}> {{ create_product_b_method }}() override;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
