@@ -1,0 +1,28 @@
+from abc import ABC, abstractmethod
+
+
+class {{ strategy_class }}(ABC):
+    @abstractmethod
+    def {{ execute_method }}(self, data: str) -> str:
+        ...
+
+
+class {{ concrete_strategy_a_class }}({{ strategy_class }}):
+    def {{ execute_method }}(self, data: str) -> str:
+        return data.upper()
+
+
+class {{ concrete_strategy_b_class }}({{ strategy_class }}):
+    def {{ execute_method }}(self, data: str) -> str:
+        return data.lower()
+
+
+class {{ context_class }}:
+    def __init__(self, strategy: {{ strategy_class }}) -> None:
+        self._strategy = strategy
+
+    def set_strategy(self, strategy: {{ strategy_class }}) -> None:
+        self._strategy = strategy
+
+    def run(self, data: str) -> str:
+        return self._strategy.{{ execute_method }}(data)
