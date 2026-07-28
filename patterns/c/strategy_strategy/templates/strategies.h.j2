@@ -1,0 +1,12 @@
+#ifndef {{ prefix | upper }}_STRATEGIES_H
+#define {{ prefix | upper }}_STRATEGIES_H
+
+#include "{{ prefix }}_{{ strategy_name }}.h"
+
+{% set strategy_list = strategies.split(',') %}
+{% for strategy in strategy_list %}
+/* Concrete strategy implementations */
+{{ strategy_func_return }} {{ prefix }}_{{ strategy | trim }}Strategy({{ strategy_func_params }});
+{% endfor %}
+
+#endif /* {{ prefix | upper }}_STRATEGIES_H */
