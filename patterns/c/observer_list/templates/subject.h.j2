@@ -1,0 +1,12 @@
+#ifndef {{ prefix | upper }}_{{ subject_name | upper }}_H
+#define {{ prefix | upper }}_{{ subject_name | upper }}_H
+
+#include "{{ prefix }}_{{ observer_name }}.h"
+
+void {{ prefix }}_{{ subject_name }}_attach(const {{ prefix }}_{{ observer_name }}* observer);
+void {{ prefix }}_{{ subject_name }}_detach(const {{ prefix }}_{{ observer_name }}* observer);
+
+/* Notification function (called by subject when state changes) */
+void {{ prefix }}_{{ subject_name }}_notifyObservers(const {{ notification_data_type }}* {{ notification_param_name }});
+
+#endif /* {{ prefix | upper }}_{{ subject_name | upper }}_H */
