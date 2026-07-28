@@ -1,0 +1,12 @@
+package {{ package }};
+
+public class {{ concrete_decorator_class }} extends {{ decorator_class }} {
+    public {{ concrete_decorator_class }}({{ component_class }} wrapee) {
+        super(wrapee);
+    }
+
+    @Override
+    public String {{ operation_method }}() {
+        return "{{ concrete_decorator_class }}(" + super.{{ operation_method }}() + ")";
+    }
+}
