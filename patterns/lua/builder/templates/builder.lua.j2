@@ -1,0 +1,95 @@
+-- Builder Pattern em Lua
+
+local {{ product_class }} = {}
+{{ product_class }}.__index = {{ product_class }}
+
+function {{ product_class }}:new()
+    local obj = {
+        partA = nil,
+        partB = nil
+    }
+    setmetatable(obj, {{ product_class }})
+    return obj
+end
+
+function {{ product_class }}:setPartA(value)
+    self.partA = value
+end
+
+function {{ product_class }}:setPartB(value)
+    self.partB = value
+end
+
+function {{ product_class }}:getPartA()
+    return self.partA
+end
+
+function {{ product_class }}:getPartB()
+    return self.partB
+end
+
+local {{ builder_class }} = {}
+{{ builder_class }}.__index = {{ builder_class }}
+
+function {{ builder_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ builder_class }})
+    return obj
+end
+
+function {{ builder_class }}:buildPartA()
+    error("Método abstrato buildPartA() deve ser implementado")
+end
+
+function {{ builder_class }}:buildPartB()
+    error("Método abstrato buildPartB() deve ser implementado")
+end
+
+function {{ builder_class }}:getResult()
+    error("Método abstrato getResult() deve ser implementado")
+end
+
+local {{ concrete_builder_class }} = setmetatable({}, { __index = {{ builder_class }} })
+{{ concrete_builder_class }}.__index = {{ concrete_builder_class }}
+
+function {{ concrete_builder_class }}:new()
+    local obj = {{ builder_class }}:new()
+    obj._product = {{ product_class }}:new()
+    setmetatable(obj, {{ concrete_builder_class }})
+    return obj
+end
+
+function {{ concrete_builder_class }}:buildPartA()
+    self._product:setPartA("partA")
+end
+
+function {{ concrete_builder_class }}:buildPartB()
+    self._product:setPartB("partB")
+end
+
+function {{ concrete_builder_class }}:getResult()
+    return self._product
+end
+
+local {{ director_class }} = {}
+{{ director_class }}.__index = {{ director_class }}
+
+function {{ director_class }}:new(builder)
+    local obj = {
+        _builder = builder
+    }
+    setmetatable(obj, {{ director_class }})
+    return obj
+end
+
+function {{ director_class }}:construct()
+    self._builder:buildPartA()
+    self._builder:buildPartB()
+end
+
+return {
+    Product = {{ product_class }},
+    Builder = {{ builder_class }},
+    ConcreteBuilder = {{ concrete_builder_class }},
+    Director = {{ director_class }}
+}
