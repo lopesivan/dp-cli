@@ -1,0 +1,32 @@
+from abc import ABC, abstractmethod
+
+
+class {{ observer_class }}(ABC):
+    @abstractmethod
+    def {{ update_method }}(self, state: str) -> None:
+        ...
+
+
+class {{ subject_class }}:
+    def __init__(self) -> None:
+        self._observers: list[{{ observer_class }}] = []
+        self._state: str = ""
+
+    def attach(self, observer: {{ observer_class }}) -> None:
+        self._observers.append(observer)
+
+    def detach(self, observer: {{ observer_class }}) -> None:
+        self._observers.remove(observer)
+
+    def set_state(self, state: str) -> None:
+        self._state = state
+        self._notify_observers()
+
+    def _notify_observers(self) -> None:
+        for observer in self._observers:
+            observer.{{ update_method }}(self._state)
+
+
+class {{ concrete_observer_class }}({{ observer_class }}):
+    def {{ update_method }}(self, state: str) -> None:
+        print(f"{{ concrete_observer_class }} recebeu: {state}")
