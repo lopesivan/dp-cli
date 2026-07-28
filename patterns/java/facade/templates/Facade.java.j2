@@ -1,0 +1,12 @@
+package {{ package }};
+
+public class {{ facade_class }} {
+    private final {{ subsystem_a_class }} subsystemA = new {{ subsystem_a_class }}();
+    private final {{ subsystem_b_class }} subsystemB = new {{ subsystem_b_class }}();
+
+    public String {{ facade_method }}() {
+        String resultA = subsystemA.{{ operation_method }}();
+        String resultB = subsystemB.{{ operation_method }}();
+        return resultA + " + " + resultB;
+    }
+}
