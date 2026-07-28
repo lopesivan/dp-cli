@@ -1,0 +1,1 @@
+"""Java Decorator pattern template."""
