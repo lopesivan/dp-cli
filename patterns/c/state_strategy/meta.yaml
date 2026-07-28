@@ -1,0 +1,42 @@
+pattern: state_strategy
+description: State Pattern em C usando ponteiros para função e estados como estratégias polimórficas.
+fields:
+  - name: prefix
+    default: app
+    prompt: Prefixo para as funções
+    required: true
+  - name: context_name
+    default: Context
+    prompt: Nome do contexto (ex: DigitalStopWatch)
+    required: true
+  - name: state_name
+    default: State
+    prompt: Nome da estrutura de estado
+    required: true
+  - name: initial_state
+    default: Stopped
+    prompt: Nome do estado inicial (ex: Stopped)
+    required: true
+  - name: events
+    default: "start,stop"
+    prompt: Lista de eventos (separados por vírgula)
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: context.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ context_name }}.h"
+  - template: state.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ state_name }}.h"
+  - template: state_internal.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ state_name }}Internal.h"
+  - template: state.c.j2
+    output_path: "{{ source_dir }}/{{ prefix }}_{{ state_name }}.c"
+  - template: context.c.j2
+    output_path: "{{ source_dir }}/{{ prefix }}_{{ context_name }}.c"
