@@ -1,0 +1,14 @@
+package {{ package }};
+
+public class {{ adapter_class }} implements {{ target_class }} {
+    private final {{ adaptee_class }} adaptee;
+
+    public {{ adapter_class }}({{ adaptee_class }} adaptee) {
+        this.adaptee = adaptee;
+    }
+
+    @Override
+    public String {{ request_method }}() {
+        return adaptee.{{ specific_request_method }}();
+    }
+}
