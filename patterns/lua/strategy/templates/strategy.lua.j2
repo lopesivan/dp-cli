@@ -1,0 +1,66 @@
+-- Strategy Pattern em Lua
+
+local {{ strategy_class }} = {}
+{{ strategy_class }}.__index = {{ strategy_class }}
+
+function {{ strategy_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ strategy_class }})
+    return obj
+end
+
+function {{ strategy_class }}:{{ execute_method }}(data)
+    error("Método abstrato {{ execute_method }}() deve ser implementado")
+end
+
+local {{ concrete_strategy_a_class }} = setmetatable({}, { __index = {{ strategy_class }} })
+{{ concrete_strategy_a_class }}.__index = {{ concrete_strategy_a_class }}
+
+function {{ concrete_strategy_a_class }}:new()
+    local obj = {{ strategy_class }}:new()
+    setmetatable(obj, {{ concrete_strategy_a_class }})
+    return obj
+end
+
+function {{ concrete_strategy_a_class }}:{{ execute_method }}(data)
+    return string.upper(data)
+end
+
+local {{ concrete_strategy_b_class }} = setmetatable({}, { __index = {{ strategy_class }} })
+{{ concrete_strategy_b_class }}.__index = {{ concrete_strategy_b_class }}
+
+function {{ concrete_strategy_b_class }}:new()
+    local obj = {{ strategy_class }}:new()
+    setmetatable(obj, {{ concrete_strategy_b_class }})
+    return obj
+end
+
+function {{ concrete_strategy_b_class }}:{{ execute_method }}(data)
+    return string.lower(data)
+end
+
+local {{ context_class }} = {}
+{{ context_class }}.__index = {{ context_class }}
+
+function {{ context_class }}:new(strategy)
+    local obj = {
+        _strategy = strategy
+    }
+    setmetatable(obj, {{ context_class }})
+    return obj
+end
+
+function {{ context_class }}:setStrategy(strategy)
+    self._strategy = strategy
+end
+
+function {{ context_class }}:run(data)
+    return self._strategy:{{ execute_method }}(data)
+end
+
+return {
+    Strategy = {{ strategy_class }},
+    ConcreteStrategyA = {{ concrete_strategy_a_class }},
+    ConcreteStrategyB = {{ concrete_strategy_b_class }},
+    Context = {{ context_class }}
+}
