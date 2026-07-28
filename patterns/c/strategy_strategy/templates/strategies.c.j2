@@ -1,0 +1,12 @@
+#include "{{ prefix }}_Strategies.h"
+
+{% set strategy_list = strategies.split(',') %}
+{% for strategy in strategy_list %}
+{{ strategy_func_return }}
+{{ prefix }}_{{ strategy | trim }}Strategy({{ strategy_func_params }})
+{
+    /* Implement your strategy logic here */
+    /* Example placeholder implementation */
+    return 0.0;
+}
+{% endfor %}
