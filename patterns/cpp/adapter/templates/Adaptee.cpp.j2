@@ -1,0 +1,10 @@
+#include "{{ adaptee_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+std::string {{ adaptee_class }}::{{ specific_request_method }}() {
+    return "{{ adaptee_class }}::{{ specific_request_method }}";
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
