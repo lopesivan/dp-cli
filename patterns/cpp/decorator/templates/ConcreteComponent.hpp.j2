@@ -1,0 +1,12 @@
+#pragma once
+#include "{{ component_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ concrete_component_class }} : public {{ component_class }} {
+public:
+    std::string {{ operation_method }}() override { return "{{ concrete_component_class }}"; }
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
