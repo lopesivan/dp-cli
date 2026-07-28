@@ -1,0 +1,10 @@
+#include "{{ concrete_decorator_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+std::string {{ concrete_decorator_class }}::{{ operation_method }}() {
+    return "{{ concrete_decorator_class }}(" + {{ decorator_class }}::{{ operation_method }}() + ")";
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
