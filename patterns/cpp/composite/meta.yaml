@@ -1,0 +1,44 @@
+pattern: composite
+description: Composite C++ com Component, Leaf e Composite formando uma estrutura de árvore recursiva.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: component_class
+    default: Component
+    prompt: Nome da interface Component
+    required: true
+  - name: leaf_class
+    default: Leaf
+    prompt: Nome da classe Leaf
+    required: true
+  - name: composite_class
+    default: Composite
+    prompt: Nome da classe Composite
+    required: true
+  - name: operation_method
+    default: Operation
+    prompt: Nome do método comum a Leaf e Composite
+    required: true
+  - name: add_method
+    default: Add
+    prompt: Nome do método que adiciona um filho ao Composite
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: Component.hpp.j2
+    output_path: "{{ header_dir }}/{{ component_class }}.hpp"
+  - template: Leaf.hpp.j2
+    output_path: "{{ header_dir }}/{{ leaf_class }}.hpp"
+  - template: Composite.hpp.j2
+    output_path: "{{ header_dir }}/{{ composite_class }}.hpp"
+  - template: Composite.cpp.j2
+    output_path: "{{ source_dir }}/{{ composite_class }}.cpp"
