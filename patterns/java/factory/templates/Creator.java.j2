@@ -1,0 +1,11 @@
+{% if package %}
+package {{ package }};
+
+{% endif %}
+public abstract class {{ creator_class }} {
+    public abstract {{ product_interface }} {{ factory_method }}();
+
+    public String runOperation() {
+        return {{ factory_method }}().{{ operation_method }}();
+    }
+}

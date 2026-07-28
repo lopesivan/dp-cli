@@ -1,0 +1,1 @@
+"""Java Observer pattern template."""

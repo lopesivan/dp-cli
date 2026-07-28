@@ -1,0 +1,23 @@
+#pragma once
+
+{% if namespace %}
+namespace {{ namespace }} {
+
+{% endif %}
+class {{ class_name }} {
+public:
+    static {{ class_name }}& {{ instance_method }}();
+
+    {{ class_name }}(const {{ class_name }}&) = delete;
+    {{ class_name }}& operator=(const {{ class_name }}&) = delete;
+
+private:
+    {{ class_name }}() = default;
+{% if not thread_safe %}
+    static {{ class_name }}* instance_;
+{% endif %}
+};
+{% if namespace %}
+
+}  // namespace {{ namespace }}
+{% endif %}

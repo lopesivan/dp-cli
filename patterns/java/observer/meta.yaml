@@ -1,0 +1,50 @@
+pattern: observer
+description: Observer Java com cadastro e notificação de observadores.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Java
+    required: true
+  - name: observer_interface
+    default: Observer
+    prompt: Interface do observador
+    required: true
+  - name: subject_class
+    default: Subject
+    prompt: Classe observada
+    required: true
+  - name: concrete_observer
+    default: ConcreteObserver
+    prompt: Observador concreto
+    required: true
+  - name: event_type
+    default: String
+    prompt: Tipo do evento
+    required: true
+  - name: update_method
+    default: update
+    prompt: Método de atualização
+    required: true
+  - name: attach_method
+    default: addObserver
+    prompt: Método para adicionar observador
+    required: true
+  - name: detach_method
+    default: removeObserver
+    prompt: Método para remover observador
+    required: true
+  - name: notify_method
+    default: notifyObservers
+    prompt: Método de notificação
+    required: true
+  - name: output_dir
+    default: src/main/java/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: Observer.java.j2
+    output_path: "{{ output_dir }}/{{ observer_interface }}.java"
+  - template: Subject.java.j2
+    output_path: "{{ output_dir }}/{{ subject_class }}.java"
+  - template: ConcreteObserver.java.j2
+    output_path: "{{ output_dir }}/{{ concrete_observer }}.java"

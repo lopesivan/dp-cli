@@ -1,0 +1,16 @@
+{% if package %}
+package {{ package }};
+
+{% endif %}
+public final class {{ concrete_observer }} implements {{ observer_interface }} {
+    private final String name;
+
+    public {{ concrete_observer }}(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void {{ update_method }}({{ event_type }} event) {
+        System.out.println(name + " recebeu: " + event);
+    }
+}

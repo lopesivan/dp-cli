@@ -1,0 +1,7 @@
+{% if package %}
+package {{ package }};
+
+{% endif %}
+public interface {{ observer_interface }} {
+    void {{ update_method }}({{ event_type }} event);
+}

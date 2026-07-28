@@ -1,0 +1,25 @@
+#include "{{ class_name }}.hpp"
+
+{% if namespace %}
+namespace {{ namespace }} {
+
+{% endif %}
+{% if thread_safe %}
+{{ class_name }}& {{ class_name }}::{{ instance_method }}() {
+    static {{ class_name }} instance;
+    return instance;
+}
+{% else %}
+{{ class_name }}* {{ class_name }}::instance_ = nullptr;
+
+{{ class_name }}& {{ class_name }}::{{ instance_method }}() {
+    if (instance_ == nullptr) {
+        instance_ = new {{ class_name }}();
+    }
+    return *instance_;
+}
+{% endif %}
+{% if namespace %}
+
+}  // namespace {{ namespace }}
+{% endif %}

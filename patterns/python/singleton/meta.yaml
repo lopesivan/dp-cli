@@ -1,0 +1,26 @@
+pattern: singleton
+description: Singleton Python com acesso por classmethod.
+fields:
+  - name: class_name
+    default: Singleton
+    prompt: Nome da classe
+    required: true
+  - name: instance_method
+    default: get_instance
+    prompt: Nome do método de acesso à instância
+    required: true
+  - name: module_name
+    default: singleton
+    prompt: Nome do módulo
+    required: true
+  - name: output_dir
+    default: .
+    prompt: Diretório de saída
+    required: true
+  - name: thread_safe
+    default: true
+    prompt: Thread-safe?
+    required: true
+outputs:
+  - template: singleton.py.j2
+    output_path: "{{ output_dir }}/{{ module_name }}.py"

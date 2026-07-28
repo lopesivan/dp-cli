@@ -1,0 +1,28 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dp-pattern-generator"
+version = "0.1.0"
+description = "CLI plugável para gerar scaffolding de design patterns."
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "Jinja2>=3.1,<4",
+    "PyYAML>=6,<7",
+]
+
+[project.scripts]
+dp = "dp:main"
+
+[tool.setuptools]
+include-package-data = true
+py-modules = ["dp"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["core", "core.*", "patterns", "patterns.*"]
+
+[tool.setuptools.package-data]
+"*" = ["*.yaml", "*.tmpl", "templates/*.j2"]

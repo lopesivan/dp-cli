@@ -1,0 +1,1 @@
+"""Python Singleton pattern template."""

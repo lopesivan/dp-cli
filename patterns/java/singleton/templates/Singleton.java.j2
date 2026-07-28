@@ -1,0 +1,31 @@
+{% if package %}
+package {{ package }};
+
+{% endif %}
+public final class {{ class_name }} {
+{% if thread_safe %}
+    private static volatile {{ class_name }} instance;
+{% else %}
+    private static {{ class_name }} instance;
+{% endif %}
+
+    private {{ class_name }}() {
+    }
+
+    public static {{ class_name }} {{ instance_method }}() {
+{% if thread_safe %}
+        if (instance == null) {
+            synchronized ({{ class_name }}.class) {
+                if (instance == null) {
+                    instance = new {{ class_name }}();
+                }
+            }
+        }
+{% else %}
+        if (instance == null) {
+            instance = new {{ class_name }}();
+        }
+{% endif %}
+        return instance;
+    }
+}

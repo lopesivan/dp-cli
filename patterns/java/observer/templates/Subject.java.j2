@@ -1,0 +1,24 @@
+{% if package %}
+package {{ package }};
+
+{% endif %}
+import java.util.ArrayList;
+import java.util.List;
+
+public final class {{ subject_class }} {
+    private final List<{{ observer_interface }}> observers = new ArrayList<>();
+
+    public void {{ attach_method }}({{ observer_interface }} observer) {
+        observers.add(observer);
+    }
+
+    public void {{ detach_method }}({{ observer_interface }} observer) {
+        observers.remove(observer);
+    }
+
+    public void {{ notify_method }}({{ event_type }} event) {
+        for ({{ observer_interface }} observer : new ArrayList<>(observers)) {
+            observer.{{ update_method }}(event);
+        }
+    }
+}

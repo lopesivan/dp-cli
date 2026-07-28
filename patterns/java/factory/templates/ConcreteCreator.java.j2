@@ -1,0 +1,10 @@
+{% if package %}
+package {{ package }};
+
+{% endif %}
+public final class {{ concrete_creator }} extends {{ creator_class }} {
+    @Override
+    public {{ product_interface }} {{ factory_method }}() {
+        return new {{ concrete_product }}();
+    }
+}

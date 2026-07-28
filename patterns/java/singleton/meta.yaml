@@ -1,0 +1,26 @@
+pattern: singleton
+description: Singleton Java com inicialização preguiçosa.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Java
+    required: true
+  - name: class_name
+    default: Singleton
+    prompt: Nome da classe
+    required: true
+  - name: instance_method
+    default: getInstance
+    prompt: Nome do método de acesso à instância
+    required: true
+  - name: output_dir
+    default: src/main/java/com/example/app
+    prompt: Diretório de saída
+    required: true
+  - name: thread_safe
+    default: true
+    prompt: Thread-safe (double-checked locking)?
+    required: true
+outputs:
+  - template: Singleton.java.j2
+    output_path: "{{ output_dir }}/{{ class_name }}.java"

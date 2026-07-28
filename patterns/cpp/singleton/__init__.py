@@ -1,0 +1,1 @@
+"""C++ Singleton pattern template."""

@@ -1,0 +1,10 @@
+{% if package %}
+package {{ package }};
+
+{% endif %}
+public final class {{ concrete_product }} implements {{ product_interface }} {
+    @Override
+    public String {{ operation_method }}() {
+        return "{{ concrete_product }}";
+    }
+}

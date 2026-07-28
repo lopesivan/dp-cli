@@ -1,0 +1,32 @@
+pattern: singleton
+description: Singleton C++ com instância local estática.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: class_name
+    default: Singleton
+    prompt: Nome da classe
+    required: true
+  - name: instance_method
+    default: instance
+    prompt: Nome do método de acesso à instância
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+  - name: thread_safe
+    default: true
+    prompt: Thread-safe (static local do C++11)?
+    required: true
+outputs:
+  - template: Singleton.hpp.j2
+    output_path: "{{ header_dir }}/{{ class_name }}.hpp"
+  - template: Singleton.cpp.j2
+    output_path: "{{ source_dir }}/{{ class_name }}.cpp"
