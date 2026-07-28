@@ -1,0 +1,40 @@
+pattern: strategy
+description: Strategy Java com Context delegando para uma implementação intercambiável.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Java
+    required: true
+  - name: strategy_class
+    default: Strategy
+    prompt: Nome da interface Strategy
+    required: true
+  - name: concrete_strategy_a_class
+    default: ConcreteStrategyA
+    prompt: Nome da primeira ConcreteStrategy
+    required: true
+  - name: concrete_strategy_b_class
+    default: ConcreteStrategyB
+    prompt: Nome da segunda ConcreteStrategy
+    required: true
+  - name: context_class
+    default: Context
+    prompt: Nome da classe Context
+    required: true
+  - name: execute_method
+    default: execute
+    prompt: Nome do método executado pela Strategy
+    required: true
+  - name: output_dir
+    default: src/main/java/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: Strategy.java.j2
+    output_path: "{{ output_dir }}/{{ strategy_class }}.java"
+  - template: ConcreteStrategyA.java.j2
+    output_path: "{{ output_dir }}/{{ concrete_strategy_a_class }}.java"
+  - template: ConcreteStrategyB.java.j2
+    output_path: "{{ output_dir }}/{{ concrete_strategy_b_class }}.java"
+  - template: Context.java.j2
+    output_path: "{{ output_dir }}/{{ context_class }}.java"
