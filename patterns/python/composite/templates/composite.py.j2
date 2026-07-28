@@ -1,0 +1,26 @@
+from abc import ABC, abstractmethod
+
+
+class {{ component_class }}(ABC):
+    @abstractmethod
+    def {{ operation_method }}(self) -> str:
+        ...
+
+
+class {{ leaf_class }}({{ component_class }}):
+    def __init__(self, name: str) -> None:
+        self._name = name
+
+    def {{ operation_method }}(self) -> str:
+        return self._name
+
+
+class {{ composite_class }}({{ component_class }}):
+    def __init__(self) -> None:
+        self._children: list[{{ component_class }}] = []
+
+    def {{ add_method }}(self, child: {{ component_class }}) -> None:
+        self._children.append(child)
+
+    def {{ operation_method }}(self) -> str:
+        return "(" + "+".join(child.{{ operation_method }}() for child in self._children) + ")"
