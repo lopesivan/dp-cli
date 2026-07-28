@@ -1,0 +1,46 @@
+pattern: strategy_strategy
+description: Strategy Pattern em C usando ponteiros para função, permitindo troca dinâmica de estratégias.
+fields:
+  - name: prefix
+    default: app
+    prompt: Prefixo para as funções
+    required: true
+  - name: context_name
+    default: Context
+    prompt: Nome do contexto (ex: Customer)
+    required: true
+  - name: strategy_name
+    default: Strategy
+    prompt: Nome do tipo da estratégia (ex: PriceStrategy)
+    required: true
+  - name: strategy_func_params
+    default: "double amount, double shipping"
+    prompt: Parâmetros da função estratégia (ex: "double amount, double shipping")
+    required: true
+  - name: strategy_func_return
+    default: double
+    prompt: Tipo de retorno da função estratégia
+    required: true
+  - name: strategies
+    default: "bronze,silver,gold"
+    prompt: Lista de estratégias concretas (separadas por vírgula)
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: context.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ context_name }}.h"
+  - template: strategy.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ strategy_name }}.h"
+  - template: strategies.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_Strategies.h"
+  - template: strategies.c.j2
+    output_path: "{{ source_dir }}/{{ prefix }}_Strategies.c"
+  - template: context.c.j2
+    output_path: "{{ source_dir }}/{{ prefix }}_{{ context_name }}.c"
