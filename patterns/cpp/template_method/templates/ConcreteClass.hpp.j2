@@ -1,0 +1,13 @@
+#pragma once
+#include "{{ abstract_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ concrete_class }} : public {{ abstract_class }} {
+protected:
+    void {{ step1_method }}() override;
+    void {{ step2_method }}() override;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
