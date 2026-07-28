@@ -1,0 +1,61 @@
+-- Decorator Pattern em Lua
+
+local {{ component_class }} = {}
+{{ component_class }}.__index = {{ component_class }}
+
+function {{ component_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ component_class }})
+    return obj
+end
+
+function {{ component_class }}:{{ operation_method }}()
+    error("Método abstrato {{ operation_method }}() deve ser implementado")
+end
+
+local {{ concrete_component_class }} = setmetatable({}, { __index = {{ component_class }} })
+{{ concrete_component_class }}.__index = {{ concrete_component_class }}
+
+function {{ concrete_component_class }}:new()
+    local obj = {{ component_class }}:new()
+    setmetatable(obj, {{ concrete_component_class }})
+    return obj
+end
+
+function {{ concrete_component_class }}:{{ operation_method }}()
+    return "{{ concrete_component_class }}"
+end
+
+local {{ decorator_class }} = setmetatable({}, { __index = {{ component_class }} })
+{{ decorator_class }}.__index = {{ decorator_class }}
+
+function {{ decorator_class }}:new(wrapee)
+    local obj = {{ component_class }}:new()
+    obj._wrapee = wrapee
+    setmetatable(obj, {{ decorator_class }})
+    return obj
+end
+
+function {{ decorator_class }}:{{ operation_method }}()
+    return self._wrapee:{{ operation_method }}()
+end
+
+local {{ concrete_decorator_class }} = setmetatable({}, { __index = {{ decorator_class }} })
+{{ concrete_decorator_class }}.__index = {{ concrete_decorator_class }}
+
+function {{ concrete_decorator_class }}:new(wrapee)
+    local obj = {{ decorator_class }}:new(wrapee)
+    setmetatable(obj, {{ concrete_decorator_class }})
+    return obj
+end
+
+function {{ concrete_decorator_class }}:{{ operation_method }}()
+    return string.format("{{ concrete_decorator_class }}(%s)", self._wrapee:{{ operation_method }}())
+end
+
+return {
+    Component = {{ component_class }},
+    ConcreteComponent = {{ concrete_component_class }},
+    Decorator = {{ decorator_class }},
+    ConcreteDecorator = {{ concrete_decorator_class }}
+}
