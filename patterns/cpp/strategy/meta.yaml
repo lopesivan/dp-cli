@@ -1,0 +1,46 @@
+pattern: strategy
+description: Strategy C++ com Context delegando para uma implementação intercambiável.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: strategy_class
+    default: Strategy
+    prompt: Nome da interface Strategy
+    required: true
+  - name: concrete_strategy_a_class
+    default: ConcreteStrategyA
+    prompt: Nome da primeira ConcreteStrategy
+    required: true
+  - name: concrete_strategy_b_class
+    default: ConcreteStrategyB
+    prompt: Nome da segunda ConcreteStrategy
+    required: true
+  - name: context_class
+    default: Context
+    prompt: Nome da classe Context
+    required: true
+  - name: execute_method
+    default: Execute
+    prompt: Nome do método executado pela Strategy
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: Strategy.hpp.j2
+    output_path: "{{ header_dir }}/{{ strategy_class }}.hpp"
+  - template: ConcreteStrategyA.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_strategy_a_class }}.hpp"
+  - template: ConcreteStrategyB.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_strategy_b_class }}.hpp"
+  - template: Context.hpp.j2
+    output_path: "{{ header_dir }}/{{ context_class }}.hpp"
+  - template: Context.cpp.j2
+    output_path: "{{ source_dir }}/{{ context_class }}.cpp"
