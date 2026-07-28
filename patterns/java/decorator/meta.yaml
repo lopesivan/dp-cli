@@ -1,0 +1,40 @@
+pattern: decorator
+description: Decorator Java adicionando comportamento a um Component sem alterar sua interface.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Java
+    required: true
+  - name: component_class
+    default: Component
+    prompt: Nome da interface Component
+    required: true
+  - name: concrete_component_class
+    default: ConcreteComponent
+    prompt: Nome do ConcreteComponent
+    required: true
+  - name: decorator_class
+    default: Decorator
+    prompt: Nome da classe base Decorator
+    required: true
+  - name: concrete_decorator_class
+    default: ConcreteDecorator
+    prompt: Nome do ConcreteDecorator
+    required: true
+  - name: operation_method
+    default: operation
+    prompt: Nome do método decorado
+    required: true
+  - name: output_dir
+    default: src/main/java/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: Component.java.j2
+    output_path: "{{ output_dir }}/{{ component_class }}.java"
+  - template: ConcreteComponent.java.j2
+    output_path: "{{ output_dir }}/{{ concrete_component_class }}.java"
+  - template: Decorator.java.j2
+    output_path: "{{ output_dir }}/{{ decorator_class }}.java"
+  - template: ConcreteDecorator.java.j2
+    output_path: "{{ output_dir }}/{{ concrete_decorator_class }}.java"
