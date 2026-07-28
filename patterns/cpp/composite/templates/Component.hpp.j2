@@ -1,0 +1,13 @@
+#pragma once
+#include <string>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ component_class }} {
+public:
+    virtual ~{{ component_class }}() = default;
+    virtual std::string {{ operation_method }}() const = 0;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
