@@ -1,0 +1,46 @@
+pattern: reactor_server
+description: Servidor TCP com REACTOR Pattern em C.
+fields:
+  - name: prefix
+    default: app
+    prompt: Prefixo para as funções
+    required: true
+  - name: server_name
+    default: Server
+    prompt: Nome do servidor
+    required: true
+  - name: client_name
+    default: Client
+    prompt: Nome do cliente
+    required: true
+  - name: port
+    default: 49152
+    prompt: Porta TCP (0-65535)
+    required: true
+  - name: max_clients
+    default: 10
+    prompt: Número máximo de clientes
+    required: true
+  - name: max_message_size
+    default: 1024
+    prompt: Tamanho máximo da mensagem
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: server.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ server_name }}.h"
+  - template: server.c.j2
+    output_path: "{{ source_dir }}/{{ prefix }}_{{ server_name }}.c"
+  - template: client.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ client_name }}.h"
+  - template: client.c.j2
+    output_path: "{{ source_dir }}/{{ prefix }}_{{ client_name }}.c"
+  - template: main.c.j2
+    output_path: "{{ source_dir }}/main.c"
