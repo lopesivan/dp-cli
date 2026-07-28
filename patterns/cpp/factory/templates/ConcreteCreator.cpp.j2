@@ -1,0 +1,11 @@
+#include "{{ concrete_creator_class }}.hpp"
+#include "{{ concrete_product_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+std::unique_ptr<{{ product_class }}> {{ concrete_creator_class }}::{{ factory_method }}() {
+    return std::make_unique<{{ concrete_product_class }}>();
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
