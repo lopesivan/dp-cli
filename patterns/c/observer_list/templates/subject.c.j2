@@ -1,0 +1,103 @@
+#include "{{ prefix }}_{{ subject_name }}.h"
+#include <assert.h>
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+
+struct ListNode {
+    {{ prefix }}_{{ observer_name }} item;
+    struct ListNode* next;
+};
+
+static struct ListNode* observerList = NULL;
+static int isNotifying = 0;
+
+/* Local helper functions for managing the linked-list */
+static void appendToList(const {{ prefix }}_{{ observer_name }}* observer)
+{
+    struct ListNode* newNode = malloc(sizeof(struct ListNode));
+    if (newNode != NULL) {
+        newNode->item = *observer;
+        newNode->next = NULL;
+        
+        if (observerList == NULL) {
+            observerList = newNode;
+        } else {
+            struct ListNode* current = observerList;
+            while (current->next != NULL) {
+                current = current->next;
+            }
+            current->next = newNode;
+        }
+    }
+}
+
+static void removeFromList(const {{ prefix }}_{{ observer_name }}* observer)
+{
+    if (observerList == NULL) return;
+    
+    struct ListNode* current = observerList;
+    struct ListNode* prev = NULL;
+    
+    while (current != NULL) {
+        if (current->item.instance == observer->instance &&
+            current->item.{{ observer_method }} == observer->{{ observer_method }}) {
+            if (prev == NULL) {
+                observerList = current->next;
+            } else {
+                prev->next = current->next;
+            }
+            free(current);
+            return;
+        }
+        prev = current;
+        current = current->next;
+    }
+}
+
+/* Implementation of the Subject interface */
+void {{ prefix }}_{{ subject_name }}_attach(const {{ prefix }}_{{ observer_name }}* observer)
+{
+    assert(0 == isNotifying);
+    assert(NULL != observer);
+    assert(NULL != observer->instance);
+    assert(NULL != observer->{{ observer_method }});
+    appendToList(observer);
+}
+
+void {{ prefix }}_{{ subject_name }}_detach(const {{ prefix }}_{{ observer_name }}* observer)
+{
+    assert(0 == isNotifying);
+    assert(NULL != observer);
+    removeFromList(observer);
+}
+
+void {{ prefix }}_{{ subject_name }}_notifyObservers(const {{ notification_data_type }}* {{ notification_param_name }})
+{
+    struct ListNode* node = observerList;
+    
+    /* Ensure that no changes are done to the subject during notification */
+    isNotifying = 1;
+    
+    /* Walk through the linked-list and notify every observer */
+    while (node != NULL) {
+        {{ prefix }}_{{ observer_name }}* observer = &node->item;
+        observer->{{ observer_method }}(observer->instance, {{ notification_param_name }});
+        node = node->next;
+    }
+    
+    /* All observers notified, allow changes again */
+    isNotifying = 0;
+}
+
+/* Cleanup function to free all observers */
+void {{ prefix }}_{{ subject_name }}_cleanup(void)
+{
+    struct ListNode* current = observerList;
+    while (current != NULL) {
+        struct ListNode* next = current->next;
+        free(current);
+        current = next;
+    }
+    observerList = NULL;
+}
