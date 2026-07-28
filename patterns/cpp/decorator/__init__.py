@@ -1,0 +1,1 @@
+"""C++ Decorator pattern template."""
