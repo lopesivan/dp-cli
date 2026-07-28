@@ -1,0 +1,48 @@
+pattern: template_method
+description: Template Method C++ com AbstractClass definindo o esqueleto do algoritmo e ConcreteClass sobrescrevendo os passos variáveis.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: abstract_class
+    default: AbstractClass
+    prompt: Nome da classe base abstrata
+    required: true
+  - name: concrete_class
+    default: ConcreteClass
+    prompt: Nome da subclasse concreta
+    required: true
+  - name: template_method_name
+    default: TemplateMethod
+    prompt: Nome do método template (algoritmo fixo)
+    required: true
+  - name: step1_method
+    default: Step1
+    prompt: Nome do primeiro passo variável
+    required: true
+  - name: step2_method
+    default: Step2
+    prompt: Nome do segundo passo variável
+    required: true
+  - name: hook_method
+    default: Hook
+    prompt: Nome do hook opcional (passo com implementação padrão)
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: AbstractClass.hpp.j2
+    output_path: "{{ header_dir }}/{{ abstract_class }}.hpp"
+  - template: AbstractClass.cpp.j2
+    output_path: "{{ source_dir }}/{{ abstract_class }}.cpp"
+  - template: ConcreteClass.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_class }}.hpp"
+  - template: ConcreteClass.cpp.j2
+    output_path: "{{ source_dir }}/{{ concrete_class }}.cpp"
