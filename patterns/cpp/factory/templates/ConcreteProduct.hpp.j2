@@ -1,0 +1,12 @@
+#pragma once
+#include "{{ product_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ concrete_product_class }} : public {{ product_class }} {
+public:
+    const char* Name() const override { return "{{ concrete_product_class }}"; }
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
