@@ -1,0 +1,1 @@
+"""Lua Strategy pattern template."""
