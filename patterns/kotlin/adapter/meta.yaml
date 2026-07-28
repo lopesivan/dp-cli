@@ -1,0 +1,38 @@
+pattern: adapter
+description: Adapter Kotlin convertendo a interface de um Adaptee para o Target esperado pelo cliente.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Kotlin
+    required: true
+  - name: target_class
+    default: Target
+    prompt: Nome da interface Target esperada pelo cliente
+    required: true
+  - name: adaptee_class
+    default: Adaptee
+    prompt: Nome da classe Adaptee (interface incompatível existente)
+    required: true
+  - name: adapter_class
+    default: Adapter
+    prompt: Nome da classe Adapter
+    required: true
+  - name: request_method
+    default: request
+    prompt: Nome do método esperado no Target
+    required: true
+  - name: specific_request_method
+    default: specificRequest
+    prompt: Nome do método existente no Adaptee
+    required: true
+  - name: output_dir
+    default: src/main/kotlin/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: Target.kt.j2
+    output_path: "{{ output_dir }}/{{ target_class }}.kt"
+  - template: Adaptee.kt.j2
+    output_path: "{{ output_dir }}/{{ adaptee_class }}.kt"
+  - template: Adapter.kt.j2
+    output_path: "{{ output_dir }}/{{ adapter_class }}.kt"
