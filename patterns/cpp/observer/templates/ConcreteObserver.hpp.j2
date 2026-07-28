@@ -1,0 +1,12 @@
+#pragma once
+#include "{{ observer_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ concrete_observer_class }} : public {{ observer_class }} {
+public:
+    void {{ update_method }}(const std::string& state) override;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
