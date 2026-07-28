@@ -1,0 +1,47 @@
+-- Adapter Pattern em Lua
+
+local {{ target_class }} = {}
+{{ target_class }}.__index = {{ target_class }}
+
+function {{ target_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ target_class }})
+    return obj
+end
+
+function {{ target_class }}:{{ request_method }}()
+    error("Método abstrato {{ request_method }}() deve ser implementado")
+end
+
+local {{ adaptee_class }} = {}
+{{ adaptee_class }}.__index = {{ adaptee_class }}
+
+function {{ adaptee_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ adaptee_class }})
+    return obj
+end
+
+function {{ adaptee_class }}:{{ specific_request_method }}()
+    return "{{ adaptee_class }}.{{ specific_request_method }}"
+end
+
+local {{ adapter_class }} = setmetatable({}, { __index = {{ target_class }} })
+{{ adapter_class }}.__index = {{ adapter_class }}
+
+function {{ adapter_class }}:new(adaptee)
+    local obj = {{ target_class }}:new()
+    obj._adaptee = adaptee
+    setmetatable(obj, {{ adapter_class }})
+    return obj
+end
+
+function {{ adapter_class }}:{{ request_method }}()
+    return self._adaptee:{{ specific_request_method }}()
+end
+
+return {
+    Target = {{ target_class }},
+    Adaptee = {{ adaptee_class }},
+    Adapter = {{ adapter_class }}
+}
