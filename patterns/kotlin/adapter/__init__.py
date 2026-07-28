@@ -1,0 +1,1 @@
+"""Kotlin Adapter pattern template."""
