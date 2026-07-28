@@ -1,0 +1,34 @@
+pattern: template_method
+description: Template Method Python com AbstractClass definindo o esqueleto do algoritmo e ConcreteClass sobrescrevendo os passos variáveis.
+fields:
+  - name: abstract_class
+    default: AbstractClass
+    prompt: Nome da classe base abstrata
+    required: true
+  - name: concrete_class
+    default: ConcreteClass
+    prompt: Nome da subclasse concreta
+    required: true
+  - name: template_method_name
+    default: template_method
+    prompt: Nome do método template (algoritmo fixo)
+    required: true
+  - name: step1_method
+    default: step1
+    prompt: Nome do primeiro passo variável
+    required: true
+  - name: step2_method
+    default: step2
+    prompt: Nome do segundo passo variável
+    required: true
+  - name: hook_method
+    default: hook
+    prompt: Nome do hook opcional (passo com implementação padrão)
+    required: true
+  - name: output_dir
+    default: src
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: template_method.py.j2
+    output_path: "{{ output_dir }}/template_method.py"
