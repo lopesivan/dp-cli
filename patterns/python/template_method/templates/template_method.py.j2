@@ -1,0 +1,29 @@
+from abc import ABC, abstractmethod
+
+
+class {{ abstract_class }}(ABC):
+
+    def {{ template_method_name }}(self) -> None:
+        self.{{ step1_method }}()
+        self.{{ step2_method }}()
+        self.{{ hook_method }}()
+
+    @abstractmethod
+    def {{ step1_method }}(self) -> None:
+        ...
+
+    @abstractmethod
+    def {{ step2_method }}(self) -> None:
+        ...
+
+    def {{ hook_method }}(self) -> None:
+        """Hook opcional: subclasses podem sobrescrever se precisarem."""
+
+
+class {{ concrete_class }}({{ abstract_class }}):
+
+    def {{ step1_method }}(self) -> None:
+        print(f"{{ concrete_class }}.{{ step1_method }}")
+
+    def {{ step2_method }}(self) -> None:
+        print(f"{{ concrete_class }}.{{ step2_method }}")
