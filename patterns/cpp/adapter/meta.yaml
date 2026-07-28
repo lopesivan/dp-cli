@@ -1,0 +1,46 @@
+pattern: adapter
+description: Adapter C++ convertendo a interface de um Adaptee para o Target esperado pelo cliente.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: target_class
+    default: Target
+    prompt: Nome da interface Target esperada pelo cliente
+    required: true
+  - name: adaptee_class
+    default: Adaptee
+    prompt: Nome da classe Adaptee (interface incompatível existente)
+    required: true
+  - name: adapter_class
+    default: Adapter
+    prompt: Nome da classe Adapter
+    required: true
+  - name: request_method
+    default: Request
+    prompt: Nome do método esperado no Target
+    required: true
+  - name: specific_request_method
+    default: SpecificRequest
+    prompt: Nome do método existente no Adaptee
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: Target.hpp.j2
+    output_path: "{{ header_dir }}/{{ target_class }}.hpp"
+  - template: Adaptee.hpp.j2
+    output_path: "{{ header_dir }}/{{ adaptee_class }}.hpp"
+  - template: Adaptee.cpp.j2
+    output_path: "{{ source_dir }}/{{ adaptee_class }}.cpp"
+  - template: Adapter.hpp.j2
+    output_path: "{{ header_dir }}/{{ adapter_class }}.hpp"
+  - template: Adapter.cpp.j2
+    output_path: "{{ source_dir }}/{{ adapter_class }}.cpp"
