@@ -1,56 +1,45 @@
+---
 pattern: factory
 description: Factory Method em Kotlin.
-
 fields:
   - name: package
     default: com.example.app
     prompt: Pacote Kotlin
     required: true
-
   - name: product_interface
     default: Product
     prompt: Interface do produto
     required: true
-
   - name: concrete_product
     default: ConcreteProduct
     prompt: Produto concreto
     required: true
-
   - name: creator_class
     default: Creator
     prompt: Classe criadora
     required: true
-
   - name: concrete_creator
     default: ConcreteCreator
     prompt: Criador concreto
     required: true
-
   - name: factory_method
     default: createProduct
     prompt: Nome do método fábrica
     required: true
-
   - name: operation_method
     default: operation
     prompt: Operação fornecida pelo produto
     required: true
-
   - name: output_dir
     default: src/main/kotlin/com/example/app
     prompt: Diretório de saída
     required: true
-
 outputs:
   - template: Product.kt.j2
-    output_path: "{{ output_dir }}/{{ product_interface }}.kt"
-
+    output_path: '{{ output_dir }}/{{ product_interface }}.kt'
   - template: ConcreteProduct.kt.j2
-    output_path: "{{ output_dir }}/{{ concrete_product }}.kt"
-
+    output_path: '{{ output_dir }}/{{ concrete_product }}.kt'
   - template: Creator.kt.j2
-    output_path: "{{ output_dir }}/{{ creator_class }}.kt"
-
+    output_path: '{{ output_dir }}/{{ creator_class }}.kt'
   - template: ConcreteCreator.kt.j2
-    output_path: "{{ output_dir }}/{{ concrete_creator }}.kt"   output_path: '{{ output_dir }}/{{ concrete_creator }}.kt'
+    output_path: '{{ output_dir }}/{{ concrete_creator }}.kt'
