@@ -1,5 +1,7 @@
+---
 pattern: observer_list
-description: Observer Pattern em C usando lista encadeada para gerenciar múltiplos observers.
+description: Observer Pattern em C usando lista encadeada para gerenciar múltiplos
+  observers.
 fields:
   - name: prefix
     default: app
@@ -7,15 +9,15 @@ fields:
     required: true
   - name: subject_name
     default: Subject
-    prompt: Nome do Subject (ex: TimeSubject)
+    prompt: 'Nome do Subject (ex: TimeSubject)'
     required: true
   - name: observer_name
     default: Observer
-    prompt: Nome do Observer (ex: TimeObserver)
+    prompt: 'Nome do Observer (ex: TimeObserver)'
     required: true
   - name: notification_data_type
     default: SystemTime
-    prompt: Tipo de dados enviados na notificação (ex: SystemTime)
+    prompt: 'Tipo de dados enviados na notificação (ex: SystemTime)'
     required: true
   - name: notification_param_name
     default: newTime
@@ -35,8 +37,8 @@ fields:
     required: true
 outputs:
   - template: observer.h.j2
-    output_path: "{{ header_dir }}/{{ prefix }}_{{ observer_name }}.h"
+    output_path: '{{ header_dir }}/{{ prefix }}_{{ observer_name }}.h'
   - template: subject.h.j2
-    output_path: "{{ header_dir }}/{{ prefix }}_{{ subject_name }}.h"
+    output_path: '{{ header_dir }}/{{ prefix }}_{{ subject_name }}.h'
   - template: subject.c.j2
-    output_path: "{{ source_dir }}/{{ prefix }}_{{ subject_name }}.c"
+    output_path: '{{ source_dir }}/{{ prefix }}_{{ subject_name }}.c'

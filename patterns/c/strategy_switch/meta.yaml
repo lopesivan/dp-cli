@@ -1,5 +1,7 @@
+---
 pattern: strategy_switch
-description: Strategy Pattern em C usando switch-case (control-coupled) para selecionar estratégias.
+description: Strategy Pattern em C usando switch-case (control-coupled) para selecionar
+  estratégias.
 fields:
   - name: prefix
     default: app
@@ -7,14 +9,14 @@ fields:
     required: true
   - name: context_name
     default: Context
-    prompt: Nome do contexto (ex: PriceCalculator)
+    prompt: 'Nome do contexto (ex: PriceCalculator)'
     required: true
   - name: enum_name
     default: StrategyType
     prompt: Nome do enum para os tipos de estratégia
     required: true
   - name: strategies
-    default: "BRONZE,SILVER,GOLD"
+    default: BRONZE,SILVER,GOLD
     prompt: Lista de estratégias (separadas por vírgula, em MAIÚSCULO)
     required: true
   - name: header_dir
@@ -27,6 +29,6 @@ fields:
     required: true
 outputs:
   - template: context.h.j2
-    output_path: "{{ header_dir }}/{{ prefix }}_{{ context_name }}.h"
+    output_path: '{{ header_dir }}/{{ prefix }}_{{ context_name }}.h'
   - template: context.c.j2
-    output_path: "{{ source_dir }}/{{ prefix }}_{{ context_name }}.c"
+    output_path: '{{ source_dir }}/{{ prefix }}_{{ context_name }}.c'

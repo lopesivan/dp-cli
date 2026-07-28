@@ -1,3 +1,4 @@
+---
 pattern: reactor
 description: REACTOR Pattern em C para demultiplexação síncrona de eventos com poll/select.
 fields:
@@ -11,7 +12,7 @@ fields:
     required: true
   - name: handle_type
     default: Handle
-    prompt: Tipo do handle (ex: int para sockets)
+    prompt: 'Tipo do handle (ex: int para sockets)'
     required: true
   - name: max_handles
     default: 32
@@ -39,10 +40,10 @@ fields:
     required: true
 outputs:
   - template: handle.h.j2
-    output_path: "{{ header_dir }}/{{ prefix }}_{{ handle_type }}.h"
+    output_path: '{{ header_dir }}/{{ prefix }}_{{ handle_type }}.h'
   - template: event_handler.h.j2
-    output_path: "{{ header_dir }}/{{ prefix }}_{{ event_handler_name }}.h"
+    output_path: '{{ header_dir }}/{{ prefix }}_{{ event_handler_name }}.h'
   - template: reactor.h.j2
-    output_path: "{{ header_dir }}/{{ prefix }}_{{ reactor_name }}.h"
+    output_path: '{{ header_dir }}/{{ prefix }}_{{ reactor_name }}.h'
   - template: reactor.c.j2
-    output_path: "{{ source_dir }}/{{ prefix }}_{{ reactor_name }}.c"
+    output_path: '{{ source_dir }}/{{ prefix }}_{{ reactor_name }}.c'

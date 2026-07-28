@@ -1,5 +1,7 @@
+---
 pattern: singleton
-description: Singleton em C com opaque pointer e lazy initialization (não thread-safe por padrão).
+description: Singleton em C com opaque pointer e lazy initialization (não thread-safe
+  por padrão).
 fields:
   - name: prefix
     default: app
@@ -23,6 +25,6 @@ fields:
     required: true
 outputs:
   - template: singleton.h.j2
-    output_path: "{{ header_dir }}/{{ prefix }}_{{ struct_name }}.h"
+    output_path: '{{ header_dir }}/{{ prefix }}_{{ struct_name }}.h'
   - template: singleton.c.j2
-    output_path: "{{ source_dir }}/{{ prefix }}_{{ struct_name }}.c"
+    output_path: '{{ source_dir }}/{{ prefix }}_{{ struct_name }}.c'

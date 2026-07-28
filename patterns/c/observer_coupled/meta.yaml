@@ -1,5 +1,7 @@
+---
 pattern: observer_coupled
-description: Observer Pattern em C com acoplamento direto (subject conhece o observer específico).
+description: Observer Pattern em C com acoplamento direto (subject conhece o observer
+  específico).
 fields:
   - name: prefix
     default: app
@@ -7,11 +9,11 @@ fields:
     required: true
   - name: subject_name
     default: Subject
-    prompt: Nome do Subject (ex: TimeSource)
+    prompt: 'Nome do Subject (ex: TimeSource)'
     required: true
   - name: observer_name
     default: Observer
-    prompt: Nome do Observer (ex: DigitalStopWatch)
+    prompt: 'Nome do Observer (ex: DigitalStopWatch)'
     required: true
   - name: notification_data_type
     default: SystemTime
@@ -39,6 +41,6 @@ fields:
     required: true
 outputs:
   - template: subject.h.j2
-    output_path: "{{ header_dir }}/{{ prefix }}_{{ subject_name }}.h"
+    output_path: '{{ header_dir }}/{{ prefix }}_{{ subject_name }}.h'
   - template: subject.c.j2
-    output_path: "{{ source_dir }}/{{ prefix }}_{{ subject_name }}.c"
+    output_path: '{{ source_dir }}/{{ prefix }}_{{ subject_name }}.c'

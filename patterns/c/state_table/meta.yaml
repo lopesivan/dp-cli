@@ -1,3 +1,4 @@
+---
 pattern: state_table
 description: State Pattern em C usando tabela de transição de estados (table-driven).
 fields:
@@ -7,14 +8,14 @@ fields:
     required: true
   - name: context_name
     default: Context
-    prompt: Nome do contexto (ex: DigitalStopWatch)
+    prompt: 'Nome do contexto (ex: DigitalStopWatch)'
     required: true
   - name: states
-    default: "stopped,started"
+    default: stopped,started
     prompt: Lista de estados (separados por vírgula)
     required: true
   - name: events
-    default: "stopEvent,startEvent"
+    default: stopEvent,startEvent
     prompt: Lista de eventos (separados por vírgula)
     required: true
   - name: header_dir
@@ -27,6 +28,6 @@ fields:
     required: true
 outputs:
   - template: context.h.j2
-    output_path: "{{ header_dir }}/{{ prefix }}_{{ context_name }}.h"
+    output_path: '{{ header_dir }}/{{ prefix }}_{{ context_name }}.h'
   - template: context.c.j2
-    output_path: "{{ source_dir }}/{{ prefix }}_{{ context_name }}.c"
+    output_path: '{{ source_dir }}/{{ prefix }}_{{ context_name }}.c'
