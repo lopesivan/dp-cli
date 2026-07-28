@@ -1,0 +1,17 @@
+#pragma once
+#include "{{ target_class }}.hpp"
+#include "{{ adaptee_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ adapter_class }} : public {{ target_class }} {
+public:
+    explicit {{ adapter_class }}({{ adaptee_class }}& adaptee) : adaptee_(adaptee) {}
+    std::string {{ request_method }}() override;
+
+private:
+    {{ adaptee_class }}& adaptee_;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
