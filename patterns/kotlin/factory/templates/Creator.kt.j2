@@ -1,0 +1,12 @@
+{% if package %}
+package {{ package }}
+
+{% endif %}
+abstract class {{ creator_class }} {
+    abstract fun {{ factory_method }}(): {{ product_interface }}
+
+    fun runOperation(): String {
+        val product = {{ factory_method }}()
+        return product.{{ operation_method }}()
+    }
+}

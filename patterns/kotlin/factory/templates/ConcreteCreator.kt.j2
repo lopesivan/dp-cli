@@ -1,0 +1,9 @@
+{% if package %}
+package {{ package }}
+
+{% endif %}
+class {{ concrete_creator }} : {{ creator_class }}() {
+    override fun {{ factory_method }}(): {{ product_interface }} {
+        return {{ concrete_product }}()
+    }
+}

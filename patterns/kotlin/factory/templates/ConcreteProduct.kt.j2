@@ -1,0 +1,9 @@
+{% if package %}
+package {{ package }}
+
+{% endif %}
+class {{ concrete_product }} : {{ product_interface }} {
+    override fun {{ operation_method }}(): String {
+        return "{{ concrete_product }}"
+    }
+}

@@ -1,0 +1,7 @@
+{% if package %}
+package {{ package }}
+
+{% endif %}
+object {{ class_name }} {
+    fun {{ instance_method }}(): {{ class_name }} = this
+}
