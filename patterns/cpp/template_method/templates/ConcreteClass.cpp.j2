@@ -1,0 +1,15 @@
+#include "{{ concrete_class }}.hpp"
+#include <iostream>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+void {{ concrete_class }}::{{ step1_method }}() {
+    std::cout << "{{ concrete_class }}::{{ step1_method }}\n";
+}
+
+void {{ concrete_class }}::{{ step2_method }}() {
+    std::cout << "{{ concrete_class }}::{{ step2_method }}\n";
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
