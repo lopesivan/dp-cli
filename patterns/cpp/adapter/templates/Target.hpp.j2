@@ -1,0 +1,13 @@
+#pragma once
+#include <string>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ target_class }} {
+public:
+    virtual ~{{ target_class }}() = default;
+    virtual std::string {{ request_method }}() = 0;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
