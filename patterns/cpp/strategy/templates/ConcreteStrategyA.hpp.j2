@@ -1,0 +1,18 @@
+#pragma once
+#include <algorithm>
+#include <string>
+#include "{{ strategy_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ concrete_strategy_a_class }} : public {{ strategy_class }} {
+public:
+    std::string {{ execute_method }}(const std::string& input) override {
+        std::string result = input;
+        std::transform(result.begin(), result.end(), result.begin(), ::toupper);
+        return result;
+    }
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
