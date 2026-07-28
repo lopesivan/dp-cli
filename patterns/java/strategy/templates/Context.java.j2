@@ -1,0 +1,17 @@
+package {{ package }};
+
+public class {{ context_class }} {
+    private {{ strategy_class }} strategy;
+
+    public {{ context_class }}({{ strategy_class }} strategy) {
+        this.strategy = strategy;
+    }
+
+    public void setStrategy({{ strategy_class }} strategy) {
+        this.strategy = strategy;
+    }
+
+    public String run(String input) {
+        return strategy.{{ execute_method }}(input);
+    }
+}
