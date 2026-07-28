@@ -1,0 +1,16 @@
+#pragma once
+#include "{{ builder_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ director_class }} {
+public:
+    void SetBuilder({{ builder_class }}* builder) { builder_ = builder; }
+    void Construct();
+
+private:
+    {{ builder_class }}* builder_ = nullptr;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

@@ -1,0 +1,12 @@
+#include "{{ invoker_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+void {{ invoker_class }}::ExecuteCommand() {
+    if (command_ != nullptr) {
+        command_->Execute();
+    }
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

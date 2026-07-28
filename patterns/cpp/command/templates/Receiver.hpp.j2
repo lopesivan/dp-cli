@@ -1,0 +1,11 @@
+#pragma once
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ receiver_class }} {
+public:
+    void {{ action_method }}();
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

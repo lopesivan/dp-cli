@@ -1,0 +1,15 @@
+#pragma once
+#include "{{ product_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ builder_class }} {
+public:
+    virtual ~{{ builder_class }}() = default;
+    virtual void BuildPartA() = 0;
+    virtual void BuildPartB() = 0;
+    virtual {{ product_class }} GetResult() = 0;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

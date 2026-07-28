@@ -1,0 +1,12 @@
+#pragma once
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ command_class }} {
+public:
+    virtual ~{{ command_class }}() = default;
+    virtual void Execute() = 0;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

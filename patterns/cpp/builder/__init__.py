@@ -1,0 +1,1 @@
+"""C++ Builder pattern template."""

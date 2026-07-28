@@ -1,0 +1,19 @@
+#pragma once
+#include "{{ command_class }}.hpp"
+#include "{{ receiver_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ concrete_command_class }} : public {{ command_class }} {
+public:
+    explicit {{ concrete_command_class }}({{ receiver_class }}& receiver)
+        : receiver_(receiver) {}
+
+    void Execute() override;
+
+private:
+    {{ receiver_class }}& receiver_;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

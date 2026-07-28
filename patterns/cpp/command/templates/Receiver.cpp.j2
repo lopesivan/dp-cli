@@ -1,0 +1,11 @@
+#include "{{ receiver_class }}.hpp"
+#include <iostream>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+void {{ receiver_class }}::{{ action_method }}() {
+    std::cout << "{{ receiver_class }}::{{ action_method }} executado\n";
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

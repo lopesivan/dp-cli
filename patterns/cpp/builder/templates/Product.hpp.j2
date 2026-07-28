@@ -1,0 +1,20 @@
+#pragma once
+#include <string>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ product_class }} {
+public:
+    void SetPartA(const std::string& value) { partA_ = value; }
+    void SetPartB(const std::string& value) { partB_ = value; }
+
+    const std::string& GetPartA() const { return partA_; }
+    const std::string& GetPartB() const { return partB_; }
+
+private:
+    std::string partA_;
+    std::string partB_;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

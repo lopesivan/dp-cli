@@ -1,0 +1,50 @@
+pattern: command
+description: Command C++ com Invoker, Receiver e ConcreteCommand.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: command_class
+    default: Command
+    prompt: Nome da interface Command
+    required: true
+  - name: concrete_command_class
+    default: ConcreteCommand
+    prompt: Nome do ConcreteCommand
+    required: true
+  - name: receiver_class
+    default: Receiver
+    prompt: Nome da classe Receiver
+    required: true
+  - name: invoker_class
+    default: Invoker
+    prompt: Nome da classe Invoker
+    required: true
+  - name: action_method
+    default: Action
+    prompt: Nome do método executado no Receiver
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: Command.hpp.j2
+    output_path: "{{ header_dir }}/{{ command_class }}.hpp"
+  - template: Receiver.hpp.j2
+    output_path: "{{ header_dir }}/{{ receiver_class }}.hpp"
+  - template: Receiver.cpp.j2
+    output_path: "{{ source_dir }}/{{ receiver_class }}.cpp"
+  - template: ConcreteCommand.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_command_class }}.hpp"
+  - template: ConcreteCommand.cpp.j2
+    output_path: "{{ source_dir }}/{{ concrete_command_class }}.cpp"
+  - template: Invoker.hpp.j2
+    output_path: "{{ header_dir }}/{{ invoker_class }}.hpp"
+  - template: Invoker.cpp.j2
+    output_path: "{{ source_dir }}/{{ invoker_class }}.cpp"

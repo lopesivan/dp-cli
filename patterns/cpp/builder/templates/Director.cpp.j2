@@ -1,0 +1,11 @@
+#include "{{ director_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+void {{ director_class }}::Construct() {
+    builder_->BuildPartA();
+    builder_->BuildPartB();
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

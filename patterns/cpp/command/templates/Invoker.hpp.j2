@@ -1,0 +1,16 @@
+#pragma once
+#include "{{ command_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ invoker_class }} {
+public:
+    void SetCommand({{ command_class }}* command) { command_ = command; }
+    void ExecuteCommand();
+
+private:
+    {{ command_class }}* command_ = nullptr;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

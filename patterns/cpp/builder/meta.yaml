@@ -1,0 +1,44 @@
+pattern: builder
+description: Builder C++ com Director orquestrando a construção do Product.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: product_class
+    default: Product
+    prompt: Nome da classe Product
+    required: true
+  - name: builder_class
+    default: Builder
+    prompt: Nome da interface Builder
+    required: true
+  - name: concrete_builder_class
+    default: ConcreteBuilder
+    prompt: Nome do ConcreteBuilder
+    required: true
+  - name: director_class
+    default: Director
+    prompt: Nome da classe Director
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: Product.hpp.j2
+    output_path: "{{ header_dir }}/{{ product_class }}.hpp"
+  - template: Builder.hpp.j2
+    output_path: "{{ header_dir }}/{{ builder_class }}.hpp"
+  - template: ConcreteBuilder.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_builder_class }}.hpp"
+  - template: ConcreteBuilder.cpp.j2
+    output_path: "{{ source_dir }}/{{ concrete_builder_class }}.cpp"
+  - template: Director.hpp.j2
+    output_path: "{{ header_dir }}/{{ director_class }}.hpp"
+  - template: Director.cpp.j2
+    output_path: "{{ source_dir }}/{{ director_class }}.cpp"

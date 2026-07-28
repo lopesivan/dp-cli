@@ -1,0 +1,18 @@
+#include "{{ concrete_builder_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+void {{ concrete_builder_class }}::BuildPartA() {
+    product_.SetPartA("partA");
+}
+
+void {{ concrete_builder_class }}::BuildPartB() {
+    product_.SetPartB("partB");
+}
+
+{{ product_class }} {{ concrete_builder_class }}::GetResult() {
+    return product_;
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

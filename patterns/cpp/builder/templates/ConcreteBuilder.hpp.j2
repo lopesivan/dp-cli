@@ -1,0 +1,17 @@
+#pragma once
+#include "{{ builder_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ concrete_builder_class }} : public {{ builder_class }} {
+public:
+    void BuildPartA() override;
+    void BuildPartB() override;
+    {{ product_class }} GetResult() override;
+
+private:
+    {{ product_class }} product_;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}

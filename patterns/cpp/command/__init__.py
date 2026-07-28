@@ -1,0 +1,1 @@
+"""C++ Command pattern template."""

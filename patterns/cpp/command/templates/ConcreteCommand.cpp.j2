@@ -1,0 +1,10 @@
+#include "{{ concrete_command_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+void {{ concrete_command_class }}::Execute() {
+    receiver_.{{ action_method }}();
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
