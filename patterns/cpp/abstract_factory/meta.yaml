@@ -1,0 +1,58 @@
+pattern: abstract_factory
+description: Abstract Factory C++ criando famílias de produtos relacionados (A e B) via duas fábricas concretas.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: abstract_factory_class
+    default: AbstractFactory
+    prompt: Nome da interface AbstractFactory
+    required: true
+  - name: concrete_factory1_class
+    default: ConcreteFactory1
+    prompt: Nome da primeira ConcreteFactory
+    required: true
+  - name: concrete_factory2_class
+    default: ConcreteFactory2
+    prompt: Nome da segunda ConcreteFactory
+    required: true
+  - name: product_a_class
+    default: ProductA
+    prompt: Nome da interface ProductA
+    required: true
+  - name: product_b_class
+    default: ProductB
+    prompt: Nome da interface ProductB
+    required: true
+  - name: create_product_a_method
+    default: CreateProductA
+    prompt: Nome do método que cria ProductA
+    required: true
+  - name: create_product_b_method
+    default: CreateProductB
+    prompt: Nome do método que cria ProductB
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: ProductA.hpp.j2
+    output_path: "{{ header_dir }}/{{ product_a_class }}.hpp"
+  - template: ProductB.hpp.j2
+    output_path: "{{ header_dir }}/{{ product_b_class }}.hpp"
+  - template: AbstractFactory.hpp.j2
+    output_path: "{{ header_dir }}/{{ abstract_factory_class }}.hpp"
+  - template: ConcreteFactory1.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_factory1_class }}.hpp"
+  - template: ConcreteFactory1.cpp.j2
+    output_path: "{{ source_dir }}/{{ concrete_factory1_class }}.cpp"
+  - template: ConcreteFactory2.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_factory2_class }}.hpp"
+  - template: ConcreteFactory2.cpp.j2
+    output_path: "{{ source_dir }}/{{ concrete_factory2_class }}.cpp"
