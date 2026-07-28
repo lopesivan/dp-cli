@@ -1,0 +1,1 @@
+"""Lua Composite pattern template."""
