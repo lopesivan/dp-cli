@@ -1,0 +1,1 @@
+"""Lua Facade pattern template."""
