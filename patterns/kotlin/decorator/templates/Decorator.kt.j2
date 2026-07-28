@@ -1,0 +1,7 @@
+package {{ package }}
+
+abstract class {{ decorator_class }}(protected val wrapee: {{ component_class }}) : {{ component_class }} {
+    override fun {{ operation_method }}(): String {
+        return wrapee.{{ operation_method }}()
+    }
+}
