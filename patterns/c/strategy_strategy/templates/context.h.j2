@@ -1,0 +1,26 @@
+#ifndef {{ prefix | upper }}_{{ context_name | upper }}_H
+#define {{ prefix | upper }}_{{ context_name | upper }}_H
+
+#include "{{ prefix }}_{{ strategy_name }}.h"
+
+typedef struct {{ prefix }}_{{ context_name }}* {{ prefix }}_{{ context_name }}Ptr;
+
+/* Create context with initial strategy */
+{{ prefix }}_{{ context_name }}Ptr {{ prefix }}_{{ context_name }}_create(
+    {{ prefix }}_{{ strategy_name }} initialStrategy,
+    /* Add other parameters as needed */);
+
+/* Destroy context */
+void {{ prefix }}_{{ context_name }}_destroy({{ prefix }}_{{ context_name }}Ptr instance);
+
+/* Change strategy at runtime */
+void {{ prefix }}_{{ context_name }}_changeStrategy(
+    {{ prefix }}_{{ context_name }}Ptr instance,
+    {{ prefix }}_{{ strategy_name }} newStrategy);
+
+/* Execute the strategy */
+{{ strategy_func_return }} {{ prefix }}_{{ context_name }}_execute(
+    {{ prefix }}_{{ context_name }}Ptr instance,
+    {{ strategy_func_params }});
+
+#endif /* {{ prefix | upper }}_{{ context_name | upper }}_H */
