@@ -1,0 +1,25 @@
+package {{ package }};
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class {{ composite_class }} implements {{ component_class }} {
+    private final List<{{ component_class }}> children = new ArrayList<>();
+
+    public void {{ add_method }}({{ component_class }} child) {
+        children.add(child);
+    }
+
+    @Override
+    public String {{ operation_method }}() {
+        StringBuilder result = new StringBuilder("(");
+        for (int i = 0; i < children.size(); i++) {
+            if (i > 0) {
+                result.append("+");
+            }
+            result.append(children.get(i).{{ operation_method }}());
+        }
+        result.append(")");
+        return result.toString();
+    }
+}
