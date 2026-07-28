@@ -1,0 +1,34 @@
+pattern: decorator
+description: Decorator Lua adicionando comportamento a um Component sem alterar sua interface.
+fields:
+  - name: module_name
+    default: decorator
+    prompt: Nome do módulo Lua
+    required: true
+  - name: component_class
+    default: Component
+    prompt: Nome da interface Component
+    required: true
+  - name: concrete_component_class
+    default: ConcreteComponent
+    prompt: Nome do ConcreteComponent
+    required: true
+  - name: decorator_class
+    default: Decorator
+    prompt: Nome da classe base Decorator
+    required: true
+  - name: concrete_decorator_class
+    default: ConcreteDecorator
+    prompt: Nome do ConcreteDecorator
+    required: true
+  - name: operation_method
+    default: operation
+    prompt: Nome do método decorado
+    required: true
+  - name: output_dir
+    default: src
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: decorator.lua.j2
+    output_path: "{{ output_dir }}/{{ module_name }}.lua"
