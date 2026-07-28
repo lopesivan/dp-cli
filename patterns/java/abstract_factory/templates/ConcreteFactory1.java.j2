@@ -1,0 +1,13 @@
+package {{ package }};
+
+public class {{ concrete_factory1_class }} implements {{ abstract_factory_class }} {
+    @Override
+    public {{ product_a_class }} {{ create_product_a_method }}() {
+        return new ConcreteProductA1();
+    }
+
+    @Override
+    public {{ product_b_class }} {{ create_product_b_method }}() {
+        return new ConcreteProductB1();
+    }
+}
