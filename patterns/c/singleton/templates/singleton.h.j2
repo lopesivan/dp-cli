@@ -1,0 +1,9 @@
+#ifndef {{ prefix | upper }}_{{ struct_name | upper }}_H
+#define {{ prefix | upper }}_{{ struct_name | upper }}_H
+
+typedef struct {{ prefix }}_{{ struct_name }} {{ prefix }}_{{ struct_name }};
+
+{{ prefix }}_{{ struct_name }}* {{ prefix }}_{{ struct_name }}_{{ instance_func }}(void);
+void {{ prefix }}_{{ struct_name }}_destroy(void);
+
+#endif /* {{ prefix | upper }}_{{ struct_name | upper }}_H */
