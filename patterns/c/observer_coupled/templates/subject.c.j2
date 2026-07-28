@@ -1,0 +1,45 @@
+#include "{{ prefix }}_{{ subject_name }}.h"
+#include <assert.h>
+#include <stddef.h>
+
+static {{ prefix }}_{{ observer_name }}Ptr observerInstance = NULL;
+static {{ notification_data_type }} currentData;
+
+/* Dummy stub for calculating new data */
+static {{ notification_data_type }} calculateNewData(void)
+{
+    {{ notification_data_type }} newData = {0};
+    /* Implement data calculation here */
+    return newData;
+}
+
+/* Notification function */
+static void {{ observer_notify_func }}({{ prefix }}_{{ observer_name }}Ptr observer, const {{ notification_data_type }}* data)
+{
+    /* Implement notification logic here */
+    (void)observer;
+    (void)data;
+}
+
+/* Initialize the subject */
+void {{ prefix }}_{{ subject_name }}_init({{ prefix }}_{{ observer_name }}Ptr observer)
+{
+    observerInstance = observer;
+}
+
+/* Start the subject */
+void {{ prefix }}_{{ subject_name }}_start(void)
+{
+    /* Code for setting up handlers for interrupts, or the like */
+    observerInstance = {{ prefix }}_{{ observer_name }}_create();
+}
+
+/* This function is invoked periodically (e.g., each millisecond) */
+static void periodicTick(void)
+{
+    /* Calculate new data */
+    currentData = calculateNewData();
+    
+    /* Notify the observer */
+    {{ observer_notify_func }}(observerInstance, &currentData);
+}
