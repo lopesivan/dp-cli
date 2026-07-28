@@ -1,0 +1,62 @@
+#include "{{ prefix }}_{{ adt_name }}.h"
+#include <stdlib.h>
+
+/* The actual struct definition is private to the .c file */
+struct {{ prefix }}_{{ adt_name }}
+{
+    /* Define your members here, e.g.: */
+    /* const char* name;  */
+    /* Address address;   */
+    /* size_t noOfOrders; */
+    int placeholder; /* Example member */
+};
+
+{% if allocation_strategy == "static_pool" %}
+#define MAX_OBJECTS {{ max_objects }}
+static struct {{ prefix }}_{{ adt_name }} object_pool[MAX_OBJECTS];
+static size_t allocated_objects = 0;
+
+{{ prefix }}_{{ adt_name }}Ptr
+{{ prefix }}_{{ adt_name }}_create(/* parameters */)
+{
+    {{ prefix }}_{{ adt_name }}Ptr obj = NULL;
+
+    if (allocated_objects < MAX_OBJECTS) {
+        obj = &object_pool[allocated_objects++];
+        /* Initialize the object fields here */
+        obj->placeholder = 0;
+    }
+    return obj;
+}
+
+void
+{{ prefix }}_{{ adt_name }}_destroy({{ prefix }}_{{ adt_name }}Ptr obj)
+{
+    /* In a static pool, destruction might just mark the object as unused.
+     * A more sophisticated free-list algorithm would be needed for reusability.
+     * This is a simplified placeholder.
+     */
+    (void)obj; /* Suppress unused parameter warning */
+}
+
+{% else %}
+/* Dynamic allocation strategy */
+{{ prefix }}_{{ adt_name }}Ptr
+{{ prefix }}_{{ adt_name }}_create(/* parameters */)
+{
+    {{ prefix }}_{{ adt_name }}Ptr obj = malloc(sizeof(struct {{ prefix }}_{{ adt_name }}));
+
+    if (obj != NULL) {
+        /* Initialize the object fields here */
+        obj->placeholder = 0;
+    }
+    return obj;
+}
+
+void
+{{ prefix }}_{{ adt_name }}_destroy({{ prefix }}_{{ adt_name }}Ptr obj)
+{
+    /* Perform any necessary clean-up */
+    free(obj);
+}
+{% endif %}
