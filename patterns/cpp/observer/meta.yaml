@@ -1,0 +1,42 @@
+pattern: observer
+description: Observer C++ com Subject notificando ConcreteObserver.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: subject_class
+    default: Subject
+    prompt: Nome da classe Subject
+    required: true
+  - name: observer_class
+    default: Observer
+    prompt: Nome da interface Observer
+    required: true
+  - name: concrete_observer_class
+    default: ConcreteObserver
+    prompt: Nome do ConcreteObserver
+    required: true
+  - name: update_method
+    default: Update
+    prompt: Nome do método de notificação
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: Observer.hpp.j2
+    output_path: "{{ header_dir }}/{{ observer_class }}.hpp"
+  - template: Subject.hpp.j2
+    output_path: "{{ header_dir }}/{{ subject_class }}.hpp"
+  - template: Subject.cpp.j2
+    output_path: "{{ source_dir }}/{{ subject_class }}.cpp"
+  - template: ConcreteObserver.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_observer_class }}.hpp"
+  - template: ConcreteObserver.cpp.j2
+    output_path: "{{ source_dir }}/{{ concrete_observer_class }}.cpp"
