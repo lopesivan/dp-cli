@@ -1,0 +1,1 @@
+"""Python Decorator pattern template."""
