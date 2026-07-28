@@ -1,0 +1,14 @@
+#ifndef {{ prefix | upper }}_{{ observer_name | upper }}_H
+#define {{ prefix | upper }}_{{ observer_name | upper }}_H
+
+#include "{{ prefix }}_{{ notification_data_type }}.h"
+
+/* Function pointer type for notification */
+typedef void (*{{ prefix | upper }}_{{ observer_method | upper }}Func)(void* instance, const {{ notification_data_type }}* {{ notification_param_name }});
+
+typedef struct {
+    void* instance;
+    {{ prefix | upper }}_{{ observer_method | upper }}Func {{ observer_method }};
+} {{ prefix }}_{{ observer_name }};
+
+#endif /* {{ prefix | upper }}_{{ observer_name | upper }}_H */
