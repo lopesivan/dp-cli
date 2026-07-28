@@ -1,0 +1,28 @@
+#include "{{ concrete_factory2_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+namespace {
+
+class ConcreteProductA2 : public {{ product_a_class }} {
+public:
+    const char* Name() const override { return "ConcreteProductA2"; }
+};
+
+class ConcreteProductB2 : public {{ product_b_class }} {
+public:
+    const char* Name() const override { return "ConcreteProductB2"; }
+};
+
+}  // namespace
+
+std::unique_ptr<{{ product_a_class }}> {{ concrete_factory2_class }}::{{ create_product_a_method }}() {
+    return std::make_unique<ConcreteProductA2>();
+}
+
+std::unique_ptr<{{ product_b_class }}> {{ concrete_factory2_class }}::{{ create_product_b_method }}() {
+    return std::make_unique<ConcreteProductB2>();
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
