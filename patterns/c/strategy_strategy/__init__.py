@@ -1,0 +1,1 @@
+"""C Strategy Pattern template."""
