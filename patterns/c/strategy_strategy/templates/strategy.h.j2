@@ -1,0 +1,7 @@
+#ifndef {{ prefix | upper }}_{{ strategy_name | upper }}_H
+#define {{ prefix | upper }}_{{ strategy_name | upper }}_H
+
+/* Strategy function type */
+typedef {{ strategy_func_return }} (*{{ prefix }}_{{ strategy_name }})({{ strategy_func_params }});
+
+#endif /* {{ prefix | upper }}_{{ strategy_name | upper }}_H */
