@@ -1,0 +1,44 @@
+from abc import ABC, abstractmethod
+
+
+class {{ product_class }}:
+    def __init__(self) -> None:
+        self.part_a: str | None = None
+        self.part_b: str | None = None
+
+
+class {{ builder_class }}(ABC):
+    @abstractmethod
+    def build_part_a(self) -> None:
+        ...
+
+    @abstractmethod
+    def build_part_b(self) -> None:
+        ...
+
+    @abstractmethod
+    def get_result(self) -> {{ product_class }}:
+        ...
+
+
+class {{ concrete_builder_class }}({{ builder_class }}):
+    def __init__(self) -> None:
+        self._product = {{ product_class }}()
+
+    def build_part_a(self) -> None:
+        self._product.part_a = "partA"
+
+    def build_part_b(self) -> None:
+        self._product.part_b = "partB"
+
+    def get_result(self) -> {{ product_class }}:
+        return self._product
+
+
+class {{ director_class }}:
+    def __init__(self, builder: {{ builder_class }}) -> None:
+        self._builder = builder
+
+    def construct(self) -> None:
+        self._builder.build_part_a()
+        self._builder.build_part_b()
