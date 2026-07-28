@@ -1,0 +1,14 @@
+#pragma once
+#include <memory>
+#include "{{ product_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ creator_class }} {
+public:
+    virtual ~{{ creator_class }}() = default;
+    virtual std::unique_ptr<{{ product_class }}> {{ factory_method }}() = 0;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
