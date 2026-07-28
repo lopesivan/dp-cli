@@ -1,0 +1,23 @@
+from abc import ABC, abstractmethod
+
+
+class {{ product_class }}(ABC):
+    @abstractmethod
+    def name(self) -> str:
+        ...
+
+
+class {{ concrete_product_class }}({{ product_class }}):
+    def name(self) -> str:
+        return "{{ concrete_product_class }}"
+
+
+class {{ creator_class }}(ABC):
+    @abstractmethod
+    def {{ factory_method }}(self) -> {{ product_class }}:
+        ...
+
+
+class {{ concrete_creator_class }}({{ creator_class }}):
+    def {{ factory_method }}(self) -> {{ product_class }}:
+        return {{ concrete_product_class }}()
