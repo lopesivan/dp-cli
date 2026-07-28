@@ -1,0 +1,34 @@
+pattern: command
+description: Command Lua com Invoker, Receiver e ConcreteCommand.
+fields:
+  - name: module_name
+    default: command
+    prompt: Nome do módulo Lua
+    required: true
+  - name: command_class
+    default: Command
+    prompt: Nome da interface Command
+    required: true
+  - name: concrete_command_class
+    default: ConcreteCommand
+    prompt: Nome do ConcreteCommand
+    required: true
+  - name: receiver_class
+    default: Receiver
+    prompt: Nome da classe Receiver
+    required: true
+  - name: invoker_class
+    default: Invoker
+    prompt: Nome da classe Invoker
+    required: true
+  - name: action_method
+    default: action
+    prompt: Nome do método executado no Receiver
+    required: true
+  - name: output_dir
+    default: src
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: command.lua.j2
+    output_path: "{{ output_dir }}/{{ module_name }}.lua"
