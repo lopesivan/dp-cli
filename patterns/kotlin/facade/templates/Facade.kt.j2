@@ -1,0 +1,12 @@
+package {{ package }}
+
+class {{ facade_class }} {
+    private val subsystemA = {{ subsystem_a_class }}()
+    private val subsystemB = {{ subsystem_b_class }}()
+
+    fun {{ facade_method }}(): String {
+        val resultA = subsystemA.{{ operation_method }}()
+        val resultB = subsystemB.{{ operation_method }}()
+        return "$resultA + $resultB"
+    }
+}
