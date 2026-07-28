@@ -1,0 +1,8 @@
+package {{ package }}
+
+class {{ director_class }}(private val builder: {{ builder_class }}) {
+    fun construct() {
+        builder.buildPartA()
+        builder.buildPartB()
+    }
+}
