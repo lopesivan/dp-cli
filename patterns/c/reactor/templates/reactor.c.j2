@@ -1,0 +1,178 @@
+#include "{{ prefix }}_{{ reactor_name }}.h"
+#include <assert.h>
+#include <stddef.h>
+#include <stdlib.h>
+#include <string.h>
+
+/* For poll() - adjust as needed for your platform */
+#ifdef _WIN32
+    /* Windows uses select() */
+    #include <winsock2.h>
+#else
+    /* Unix uses poll() */
+    #include <poll.h>
+    #ifndef INFTIM
+        #define INFTIM -1
+    #endif
+#endif
+
+#define MAX_NO_OF_HANDLES {{ max_handles }}
+
+/* Bind an event handler to the struct used to interface with the demultiplexer */
+typedef struct {
+    int isUsed;
+    {{ prefix }}_{{ event_handler_name }} handler;
+    struct pollfd fd;
+} HandlerRegistration;
+
+static HandlerRegistration registeredHandlers[MAX_NO_OF_HANDLES];
+static int isInitialized = 0;
+
+/* Initialize the Reactor */
+static void initReactor(void)
+{
+    if (!isInitialized) {
+        memset(registeredHandlers, 0, sizeof(registeredHandlers));
+        isInitialized = 1;
+    }
+}
+
+/* Add a copy of the given handler to the first free position */
+static int addToRegistry({{ prefix }}_{{ event_handler_name }}* handler)
+{
+    int i;
+    for (i = 0; i < MAX_NO_OF_HANDLES; ++i) {
+        if (registeredHandlers[i].isUsed == 0) {
+            HandlerRegistration* freeEntry = &registeredHandlers[i];
+            
+            freeEntry->handler = *handler;
+            freeEntry->fd.fd = handler->{{ get_handle_method }}(handler->instance);
+            freeEntry->fd.events = POLLRDNORM | POLLERR;
+            
+            freeEntry->isUsed = 1;
+            return 1;
+        }
+    }
+    return 0; /* No space available */
+}
+
+/* Identify and remove an event handler from the registry */
+static int removeFromRegistry({{ prefix }}_{{ event_handler_name }}* handler)
+{
+    int i;
+    for (i = 0; i < MAX_NO_OF_HANDLES; ++i) {
+        if (registeredHandlers[i].isUsed && 
+            registeredHandlers[i].handler.instance == handler->instance) {
+            registeredHandlers[i].isUsed = 0;
+            return 1;
+        }
+    }
+    return 0; /* Handler not found */
+}
+
+/* Build the poll array from all registered handlers */
+static size_t buildPollArray(struct pollfd* fds)
+{
+    int i;
+    size_t noOfCopiedHandles = 0;
+    
+    for (i = 0; i < MAX_NO_OF_HANDLES; ++i) {
+        if (registeredHandlers[i].isUsed) {
+            fds[noOfCopiedHandles] = registeredHandlers[i].fd;
+            ++noOfCopiedHandles;
+        }
+    }
+    
+    return noOfCopiedHandles;
+}
+
+/* Find an event handler by its file descriptor */
+static {{ prefix }}_{{ event_handler_name }}* findHandler(int fd)
+{
+    int i;
+    for (i = 0; i < MAX_NO_OF_HANDLES; ++i) {
+        if (registeredHandlers[i].isUsed && 
+            registeredHandlers[i].fd.fd == fd) {
+            return &registeredHandlers[i].handler;
+        }
+    }
+    return NULL;
+}
+
+/* Dispatch events to all signalled handles */
+static void dispatchSignalledHandles(const struct pollfd* fds, size_t noOfHandles)
+{
+    size_t i;
+    
+    for (i = 0; i < noOfHandles; ++i) {
+        if (fds[i].revents & (POLLRDNORM | POLLERR)) {
+            {{ prefix }}_{{ event_handler_name }}* signalledHandler = findHandler(fds[i].fd);
+            
+            if (signalledHandler != NULL) {
+                signalledHandler->{{ handle_event_method }}(signalledHandler->instance);
+            }
+        }
+    }
+}
+
+/* Implementation of the Reactor interface */
+void {{ prefix }}_{{ reactor_name }}_Register({{ prefix }}_{{ event_handler_name }}* handler)
+{
+    initReactor();
+    assert(handler != NULL);
+    
+    if (!addToRegistry(handler)) {
+        /* Error: No more registrations possible */
+        #ifdef ERROR_H
+        error("No more registrations possible");
+        #else
+        fprintf(stderr, "Reactor: No more registrations possible\n");
+        #endif
+    }
+}
+
+void {{ prefix }}_{{ reactor_name }}_Unregister({{ prefix }}_{{ event_handler_name }}* handler)
+{
+    assert(handler != NULL);
+    
+    if (!removeFromRegistry(handler)) {
+        /* Error: Event handler not registered */
+        #ifdef ERROR_H
+        error("Event handler not registered");
+        #else
+        fprintf(stderr, "Reactor: Event handler not registered\n");
+        #endif
+    }
+}
+
+void {{ prefix }}_{{ reactor_name }}_HandleEvents(void)
+{
+    struct pollfd fds[MAX_NO_OF_HANDLES] = {0};
+    const size_t noOfHandles = buildPollArray(fds);
+    
+    if (noOfHandles == 0) {
+        return; /* No registered handlers */
+    }
+    
+    /* Invoke the synchronous event demultiplexer */
+    int result = poll(fds, noOfHandles, INFTIM);
+    
+    if (result > 0) {
+        dispatchSignalledHandles(fds, noOfHandles);
+    } else if (result < 0) {
+        #ifdef ERROR_H
+        error("Poll failure");
+        #else
+        perror("Poll failure");
+        #endif
+    }
+}
+
+void {{ prefix }}_{{ reactor_name }}_Cleanup(void)
+{
+    int i;
+    for (i = 0; i < MAX_NO_OF_HANDLES; ++i) {
+        registeredHandlers[i].isUsed = 0;
+    }
+    isInitialized = 0;
+}
