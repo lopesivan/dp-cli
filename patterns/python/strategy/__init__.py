@@ -1,0 +1,1 @@
+"""Python Strategy pattern template."""
