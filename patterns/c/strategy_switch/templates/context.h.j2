@@ -1,0 +1,19 @@
+#ifndef {{ prefix | upper }}_{{ context_name | upper }}_H
+#define {{ prefix | upper }}_{{ context_name | upper }}_H
+
+{% set strategy_list = strategies.split(',') %}
+typedef enum
+{
+    {% for strategy in strategy_list %}
+    {{ strategy | trim }}{% if not loop.last %},{% endif %}
+    {% endfor %}
+} {{ prefix }}_{{ enum_name }};
+
+typedef struct {{ prefix }}_{{ context_name }}* {{ prefix }}_{{ context_name }}Ptr;
+
+/* Execute strategy based on enum */
+{{ strategy_func_return | default('double') }} {{ prefix }}_{{ context_name }}_execute(
+    {{ prefix }}_{{ enum_name }} strategy,
+    /* Add parameters as needed */);
+
+#endif /* {{ prefix | upper }}_{{ context_name | upper }}_H */
