@@ -1,0 +1,58 @@
+pattern: abstract_factory
+description: Abstract Factory Java criando famílias de produtos relacionados (A e B) via duas fábricas concretas.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Java
+    required: true
+  - name: abstract_factory_class
+    default: AbstractFactory
+    prompt: Nome da interface AbstractFactory
+    required: true
+  - name: concrete_factory1_class
+    default: ConcreteFactory1
+    prompt: Nome da primeira ConcreteFactory
+    required: true
+  - name: concrete_factory2_class
+    default: ConcreteFactory2
+    prompt: Nome da segunda ConcreteFactory
+    required: true
+  - name: product_a_class
+    default: ProductA
+    prompt: Nome da interface ProductA
+    required: true
+  - name: product_b_class
+    default: ProductB
+    prompt: Nome da interface ProductB
+    required: true
+  - name: create_product_a_method
+    default: createProductA
+    prompt: Nome do método que cria ProductA
+    required: true
+  - name: create_product_b_method
+    default: createProductB
+    prompt: Nome do método que cria ProductB
+    required: true
+  - name: output_dir
+    default: src/main/java/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: ProductA.java.j2
+    output_path: "{{ output_dir }}/{{ product_a_class }}.java"
+  - template: ProductB.java.j2
+    output_path: "{{ output_dir }}/{{ product_b_class }}.java"
+  - template: AbstractFactory.java.j2
+    output_path: "{{ output_dir }}/{{ abstract_factory_class }}.java"
+  - template: ConcreteProductA1.java.j2
+    output_path: "{{ output_dir }}/ConcreteProductA1.java"
+  - template: ConcreteProductA2.java.j2
+    output_path: "{{ output_dir }}/ConcreteProductA2.java"
+  - template: ConcreteProductB1.java.j2
+    output_path: "{{ output_dir }}/ConcreteProductB1.java"
+  - template: ConcreteProductB2.java.j2
+    output_path: "{{ output_dir }}/ConcreteProductB2.java"
+  - template: ConcreteFactory1.java.j2
+    output_path: "{{ output_dir }}/{{ concrete_factory1_class }}.java"
+  - template: ConcreteFactory2.java.j2
+    output_path: "{{ output_dir }}/{{ concrete_factory2_class }}.java"
