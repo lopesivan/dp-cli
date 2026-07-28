@@ -1,0 +1,14 @@
+package {{ package }};
+
+public class {{ leaf_class }} implements {{ component_class }} {
+    private final String name;
+
+    public {{ leaf_class }}(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public String {{ operation_method }}() {
+        return name;
+    }
+}
