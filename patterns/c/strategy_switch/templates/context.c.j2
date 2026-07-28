@@ -1,0 +1,21 @@
+#include "{{ prefix }}_{{ context_name }}.h"
+#include <assert.h>
+
+/*
+Error handler for unsupported strategies
+*/
+static void onError(const char* reason)
+{
+    /* Implement error handling here */
+    (void)reason;
+}
+
+{{ strategy_func_return | default('double') }}
+{{ prefix }}_{{ context_name }}_execute(
+    {{ prefix }}_{{ enum_name }} strategy,
+    /* Add parameters as needed */)
+{
+    /* Implement strategy selection here */
+    /* Example placeholder implementation */
+    return 0.0;
+}
