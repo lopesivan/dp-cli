@@ -1,0 +1,1 @@
+"""Lua Command pattern template."""
