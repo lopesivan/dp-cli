@@ -1,0 +1,32 @@
+pattern: first_class_adt
+description: FIRST-CLASS ADT em C com opaque pointer, escondendo a implementação e fornecendo funções de criação/destruição.
+fields:
+  - name: prefix
+    default: app
+    prompt: Prefixo para as funções (ex: app)
+    required: true
+  - name: adt_name
+    default: Adt
+    prompt: Nome da ADT (ex: Customer)
+    required: true
+  - name: allocation_strategy
+    default: dynamic
+    prompt: Estratégia de alocação ("dynamic" ou "static_pool")
+    required: true
+  - name: max_objects
+    default: 42
+    prompt: Número máximo de objetos (se static_pool)
+    required: false
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: adt.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ adt_name }}.h"
+  - template: adt.c.j2
+    output_path: "{{ source_dir }}/{{ prefix }}_{{ adt_name }}.c"
