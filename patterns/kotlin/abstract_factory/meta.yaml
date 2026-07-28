@@ -1,0 +1,50 @@
+pattern: abstract_factory
+description: Abstract Factory Kotlin criando famílias de produtos relacionados (A e B) via duas fábricas concretas.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Kotlin
+    required: true
+  - name: abstract_factory_class
+    default: AbstractFactory
+    prompt: Nome da interface AbstractFactory
+    required: true
+  - name: concrete_factory1_class
+    default: ConcreteFactory1
+    prompt: Nome da primeira ConcreteFactory
+    required: true
+  - name: concrete_factory2_class
+    default: ConcreteFactory2
+    prompt: Nome da segunda ConcreteFactory
+    required: true
+  - name: product_a_class
+    default: ProductA
+    prompt: Nome da interface ProductA
+    required: true
+  - name: product_b_class
+    default: ProductB
+    prompt: Nome da interface ProductB
+    required: true
+  - name: create_product_a_method
+    default: createProductA
+    prompt: Nome do método que cria ProductA
+    required: true
+  - name: create_product_b_method
+    default: createProductB
+    prompt: Nome do método que cria ProductB
+    required: true
+  - name: output_dir
+    default: src/main/kotlin/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: ProductA.kt.j2
+    output_path: "{{ output_dir }}/{{ product_a_class }}.kt"
+  - template: ProductB.kt.j2
+    output_path: "{{ output_dir }}/{{ product_b_class }}.kt"
+  - template: AbstractFactory.kt.j2
+    output_path: "{{ output_dir }}/{{ abstract_factory_class }}.kt"
+  - template: ConcreteFactory1.kt.j2
+    output_path: "{{ output_dir }}/{{ concrete_factory1_class }}.kt"
+  - template: ConcreteFactory2.kt.j2
+    output_path: "{{ output_dir }}/{{ concrete_factory2_class }}.kt"
