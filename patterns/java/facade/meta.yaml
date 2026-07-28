@@ -1,0 +1,38 @@
+pattern: facade
+description: Facade Java simplificando o acesso a um subsistema com múltiplas partes.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Java
+    required: true
+  - name: facade_class
+    default: Facade
+    prompt: Nome da classe Facade
+    required: true
+  - name: subsystem_a_class
+    default: SubsystemA
+    prompt: Nome do primeiro Subsystem
+    required: true
+  - name: subsystem_b_class
+    default: SubsystemB
+    prompt: Nome do segundo Subsystem
+    required: true
+  - name: operation_method
+    default: operation
+    prompt: Nome do método de cada Subsystem
+    required: true
+  - name: facade_method
+    default: performOperation
+    prompt: Nome do método unificado no Facade
+    required: true
+  - name: output_dir
+    default: src/main/java/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: SubsystemA.java.j2
+    output_path: "{{ output_dir }}/{{ subsystem_a_class }}.java"
+  - template: SubsystemB.java.j2
+    output_path: "{{ output_dir }}/{{ subsystem_b_class }}.java"
+  - template: Facade.java.j2
+    output_path: "{{ output_dir }}/{{ facade_class }}.java"
