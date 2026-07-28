@@ -1,0 +1,13 @@
+#pragma once
+#include <string>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ strategy_class }} {
+public:
+    virtual ~{{ strategy_class }}() = default;
+    virtual std::string {{ execute_method }}(const std::string& input) = 0;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
