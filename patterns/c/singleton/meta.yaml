@@ -1,0 +1,28 @@
+pattern: singleton
+description: Singleton em C com opaque pointer e lazy initialization (não thread-safe por padrão).
+fields:
+  - name: prefix
+    default: app
+    prompt: Prefixo de namespace (glib style)
+    required: true
+  - name: struct_name
+    default: singleton
+    prompt: Nome da struct (snake_case, sem prefixo)
+    required: true
+  - name: instance_func
+    default: instance
+    prompt: Nome da função de acesso à instância
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: singleton.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ struct_name }}.h"
+  - template: singleton.c.j2
+    output_path: "{{ source_dir }}/{{ prefix }}_{{ struct_name }}.c"
