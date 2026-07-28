@@ -1,0 +1,15 @@
+package {{ package }}
+
+class {{ concrete_builder_class }} : {{ builder_class }} {
+    private val product = {{ product_class }}()
+
+    override fun buildPartA() {
+        product.partA = "partA"
+    }
+
+    override fun buildPartB() {
+        product.partB = "partB"
+    }
+
+    override fun getResult(): {{ product_class }} = product
+}
