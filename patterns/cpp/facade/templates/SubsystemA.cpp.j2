@@ -1,0 +1,10 @@
+#include "{{ subsystem_a_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+std::string {{ subsystem_a_class }}::{{ operation_method }}() {
+    return "{{ subsystem_a_class }}::{{ operation_method }}";
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
