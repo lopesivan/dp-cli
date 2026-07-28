@@ -1,0 +1,15 @@
+package {{ package }};
+
+public class {{ invoker_class }} {
+    private {{ command_class }} command;
+
+    public void setCommand({{ command_class }} command) {
+        this.command = command;
+    }
+
+    public void executeCommand() {
+        if (command != null) {
+            command.execute();
+        }
+    }
+}

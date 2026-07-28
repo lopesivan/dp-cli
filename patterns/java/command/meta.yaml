@@ -1,0 +1,40 @@
+pattern: command
+description: Command Java com Invoker, Receiver e ConcreteCommand.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Java
+    required: true
+  - name: command_class
+    default: Command
+    prompt: Nome da interface Command
+    required: true
+  - name: concrete_command_class
+    default: ConcreteCommand
+    prompt: Nome do ConcreteCommand
+    required: true
+  - name: receiver_class
+    default: Receiver
+    prompt: Nome da classe Receiver
+    required: true
+  - name: invoker_class
+    default: Invoker
+    prompt: Nome da classe Invoker
+    required: true
+  - name: action_method
+    default: action
+    prompt: Nome do método executado no Receiver
+    required: true
+  - name: output_dir
+    default: src/main/java/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: Command.java.j2
+    output_path: "{{ output_dir }}/{{ command_class }}.java"
+  - template: Receiver.java.j2
+    output_path: "{{ output_dir }}/{{ receiver_class }}.java"
+  - template: ConcreteCommand.java.j2
+    output_path: "{{ output_dir }}/{{ concrete_command_class }}.java"
+  - template: Invoker.java.j2
+    output_path: "{{ output_dir }}/{{ invoker_class }}.java"

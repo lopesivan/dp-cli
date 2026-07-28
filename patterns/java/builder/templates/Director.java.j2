@@ -1,0 +1,14 @@
+package {{ package }};
+
+public class {{ director_class }} {
+    private {{ builder_class }} builder;
+
+    public void setBuilder({{ builder_class }} builder) {
+        this.builder = builder;
+    }
+
+    public void construct() {
+        builder.buildPartA();
+        builder.buildPartB();
+    }
+}

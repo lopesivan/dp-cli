@@ -1,0 +1,14 @@
+package {{ package }};
+
+public class {{ concrete_command_class }} implements {{ command_class }} {
+    private final {{ receiver_class }} receiver;
+
+    public {{ concrete_command_class }}({{ receiver_class }} receiver) {
+        this.receiver = receiver;
+    }
+
+    @Override
+    public void execute() {
+        receiver.{{ action_method }}();
+    }
+}

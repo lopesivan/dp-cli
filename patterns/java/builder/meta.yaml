@@ -1,0 +1,36 @@
+pattern: builder
+description: Builder Java com Director orquestrando a construção do Product.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Java
+    required: true
+  - name: product_class
+    default: Product
+    prompt: Nome da classe Product
+    required: true
+  - name: builder_class
+    default: Builder
+    prompt: Nome da interface Builder
+    required: true
+  - name: concrete_builder_class
+    default: ConcreteBuilder
+    prompt: Nome do ConcreteBuilder
+    required: true
+  - name: director_class
+    default: Director
+    prompt: Nome da classe Director
+    required: true
+  - name: output_dir
+    default: src/main/java/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: Product.java.j2
+    output_path: "{{ output_dir }}/{{ product_class }}.java"
+  - template: Builder.java.j2
+    output_path: "{{ output_dir }}/{{ builder_class }}.java"
+  - template: ConcreteBuilder.java.j2
+    output_path: "{{ output_dir }}/{{ concrete_builder_class }}.java"
+  - template: Director.java.j2
+    output_path: "{{ output_dir }}/{{ director_class }}.java"

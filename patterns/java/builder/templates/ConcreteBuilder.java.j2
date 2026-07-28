@@ -1,0 +1,20 @@
+package {{ package }};
+
+public class {{ concrete_builder_class }} implements {{ builder_class }} {
+    private final {{ product_class }} product = new {{ product_class }}();
+
+    @Override
+    public void buildPartA() {
+        product.setPartA("partA");
+    }
+
+    @Override
+    public void buildPartB() {
+        product.setPartB("partB");
+    }
+
+    @Override
+    public {{ product_class }} getResult() {
+        return product;
+    }
+}

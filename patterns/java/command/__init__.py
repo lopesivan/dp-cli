@@ -1,0 +1,1 @@
+"""Java Command pattern template."""
