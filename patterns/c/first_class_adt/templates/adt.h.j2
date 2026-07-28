@@ -1,0 +1,13 @@
+#ifndef {{ prefix | upper }}_{{ adt_name | upper }}_H
+#define {{ prefix | upper }}_{{ adt_name | upper }}_H
+
+/* Opaque pointer to hide implementation details */
+typedef struct {{ prefix }}_{{ adt_name }}* {{ prefix }}_{{ adt_name }}Ptr;
+
+/* Create a new object and return a handle to it */
+{{ prefix }}_{{ adt_name }}Ptr {{ prefix }}_{{ adt_name }}_create(/* parameters */);
+
+/* Destroy the object and invalidate the handle */
+void {{ prefix }}_{{ adt_name }}_destroy({{ prefix }}_{{ adt_name }}Ptr obj);
+
+#endif /* {{ prefix | upper }}_{{ adt_name | upper }}_H */
