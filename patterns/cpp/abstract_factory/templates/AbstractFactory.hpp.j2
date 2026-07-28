@@ -1,0 +1,16 @@
+#pragma once
+#include <memory>
+#include "{{ product_a_class }}.hpp"
+#include "{{ product_b_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ abstract_factory_class }} {
+public:
+    virtual ~{{ abstract_factory_class }}() = default;
+    virtual std::unique_ptr<{{ product_a_class }}> {{ create_product_a_method }}() = 0;
+    virtual std::unique_ptr<{{ product_b_class }}> {{ create_product_b_method }}() = 0;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
