@@ -1,0 +1,12 @@
+#pragma once
+#include <string>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ adaptee_class }} {
+public:
+    std::string {{ specific_request_method }}();
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
