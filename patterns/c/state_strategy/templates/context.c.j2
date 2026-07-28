@@ -1,0 +1,36 @@
+#include "{{ prefix }}_{{ context_name }}.h"
+#include "{{ prefix }}_{{ state_name }}Internal.h"
+#include <stdlib.h>
+
+struct {{ prefix }}_{{ context_name }}
+{
+    struct {{ prefix }}_{{ state_name }} state;
+    /* Add your context data here */
+    int placeholder;
+};
+
+{{ prefix }}_{{ context_name }}Ptr
+{{ prefix }}_{{ context_name }}_create(void)
+{
+    {{ prefix }}_{{ context_name }}Ptr instance = malloc(sizeof(*instance));
+    if (instance != NULL) {
+        {{ prefix }}_{{ state_name }}_transitionTo{{ initial_state | trim | capitalize }}(&instance->state);
+        instance->placeholder = 0;
+    }
+    return instance;
+}
+
+void
+{{ prefix }}_{{ context_name }}_destroy({{ prefix }}_{{ context_name }}Ptr instance)
+{
+    free(instance);
+}
+
+{% set event_list = events.split(',') %}
+{% for event in event_list %}
+void
+{{ prefix }}_{{ context_name }}_{{ event | trim }}({{ prefix }}_{{ context_name }}Ptr instance)
+{
+    instance->state.{{ event | trim }}(&instance->state);
+}
+{% endfor %}
