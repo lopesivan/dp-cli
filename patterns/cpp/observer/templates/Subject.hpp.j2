@@ -1,0 +1,22 @@
+#pragma once
+#include <string>
+#include <vector>
+#include "{{ observer_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ subject_class }} {
+public:
+    void Attach({{ observer_class }}* observer);
+    void Detach({{ observer_class }}* observer);
+    void SetState(const std::string& state);
+
+private:
+    void NotifyObservers();
+
+    std::vector<{{ observer_class }}*> observers_;
+    std::string state_;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
