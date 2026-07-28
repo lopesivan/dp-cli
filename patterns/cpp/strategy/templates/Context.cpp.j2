@@ -1,0 +1,10 @@
+#include "{{ context_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+std::string {{ context_class }}::Run(const std::string& input) {
+    return strategy_->{{ execute_method }}(input);
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
