@@ -1,0 +1,1 @@
+"""C++ Observer pattern template."""
