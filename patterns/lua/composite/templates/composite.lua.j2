@@ -1,0 +1,56 @@
+-- Composite Pattern em Lua
+
+local {{ component_class }} = {}
+{{ component_class }}.__index = {{ component_class }}
+
+function {{ component_class }}:new()
+    local obj = {}
+    setmetatable(obj, {{ component_class }})
+    return obj
+end
+
+function {{ component_class }}:{{ operation_method }}()
+    error("Método abstrato {{ operation_method }}() deve ser implementado")
+end
+
+local {{ leaf_class }} = setmetatable({}, { __index = {{ component_class }} })
+{{ leaf_class }}.__index = {{ leaf_class }}
+
+function {{ leaf_class }}:new(name)
+    local obj = {{ component_class }}:new()
+    obj._name = name
+    setmetatable(obj, {{ leaf_class }})
+    return obj
+end
+
+function {{ leaf_class }}:{{ operation_method }}()
+    return self._name
+end
+
+local {{ composite_class }} = setmetatable({}, { __index = {{ component_class }} })
+{{ composite_class }}.__index = {{ composite_class }}
+
+function {{ composite_class }}:new()
+    local obj = {{ component_class }}:new()
+    obj._children = {}
+    setmetatable(obj, {{ composite_class }})
+    return obj
+end
+
+function {{ composite_class }}:{{ add_method }}(child)
+    table.insert(self._children, child)
+end
+
+function {{ composite_class }}:{{ operation_method }}()
+    local parts = {}
+    for _, child in ipairs(self._children) do
+        table.insert(parts, child:{{ operation_method }}())
+    end
+    return "(" .. table.concat(parts, "+") .. ")"
+end
+
+return {
+    Component = {{ component_class }},
+    Leaf = {{ leaf_class }},
+    Composite = {{ composite_class }}
+}
