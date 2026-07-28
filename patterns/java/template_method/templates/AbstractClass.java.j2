@@ -1,0 +1,17 @@
+package {{ package }};
+
+public abstract class {{ abstract_class }} {
+
+    public final void {{ template_method_name }}() {
+        {{ step1_method }}();
+        {{ step2_method }}();
+        {{ hook_method }}();
+    }
+
+    protected abstract void {{ step1_method }}();
+    protected abstract void {{ step2_method }}();
+
+    protected void {{ hook_method }}() {
+        // hook opcional: subclasses podem sobrescrever se precisarem
+    }
+}
