@@ -1,0 +1,1 @@
+"""Lua Decorator pattern template."""
