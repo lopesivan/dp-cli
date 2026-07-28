@@ -1,0 +1,30 @@
+#include "{{ prefix }}_{{ server_name }}.h"
+#include "{{ prefix }}_Reactor.h"
+#include <stdio.h>
+
+int main(void)
+{
+    printf("=== REACTOR Server Demo ===\n");
+    printf("Starting server on port %d...\n", {{ port }});
+    
+    {{ prefix }}_{{ server_name }}Ptr server = {{ prefix }}_{{ server_name }}_create({{ port }});
+    
+    if (server == NULL) {
+        fprintf(stderr, "Failed to create server\n");
+        return 1;
+    }
+    
+    printf("Server started. Waiting for connections...\n");
+    printf("Press Ctrl+C to stop\n\n");
+    
+    /* Enter the eternal reactive event loop */
+    for (;;) {
+        {{ prefix }}_Reactor_HandleEvents();
+    }
+    
+    /* This code is never reached */
+    {{ prefix }}_{{ server_name }}_destroy(server);
+    {{ prefix }}_Reactor_Cleanup();
+    
+    return 0;
+}
