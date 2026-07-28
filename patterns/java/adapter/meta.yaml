@@ -1,0 +1,38 @@
+pattern: adapter
+description: Adapter Java convertendo a interface de um Adaptee para o Target esperado pelo cliente.
+fields:
+  - name: package
+    default: com.example.app
+    prompt: Pacote Java
+    required: true
+  - name: target_class
+    default: Target
+    prompt: Nome da interface Target esperada pelo cliente
+    required: true
+  - name: adaptee_class
+    default: Adaptee
+    prompt: Nome da classe Adaptee (interface incompatível existente)
+    required: true
+  - name: adapter_class
+    default: Adapter
+    prompt: Nome da classe Adapter
+    required: true
+  - name: request_method
+    default: request
+    prompt: Nome do método esperado no Target
+    required: true
+  - name: specific_request_method
+    default: specificRequest
+    prompt: Nome do método existente no Adaptee
+    required: true
+  - name: output_dir
+    default: src/main/java/com/example/app
+    prompt: Diretório de saída
+    required: true
+outputs:
+  - template: Target.java.j2
+    output_path: "{{ output_dir }}/{{ target_class }}.java"
+  - template: Adaptee.java.j2
+    output_path: "{{ output_dir }}/{{ adaptee_class }}.java"
+  - template: Adapter.java.j2
+    output_path: "{{ output_dir }}/{{ adapter_class }}.java"
