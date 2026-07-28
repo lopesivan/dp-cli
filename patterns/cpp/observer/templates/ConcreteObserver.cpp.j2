@@ -1,0 +1,11 @@
+#include "{{ concrete_observer_class }}.hpp"
+#include <iostream>
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+void {{ concrete_observer_class }}::{{ update_method }}(const std::string& state) {
+    std::cout << "{{ concrete_observer_class }} recebeu: " << state << "\n";
+}
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
