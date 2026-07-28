@@ -1,0 +1,12 @@
+#pragma once
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ product_a_class }} {
+public:
+    virtual ~{{ product_a_class }}() = default;
+    virtual const char* Name() const = 0;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
