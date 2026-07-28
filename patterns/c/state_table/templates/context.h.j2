@@ -1,0 +1,15 @@
+#ifndef {{ prefix | upper }}_{{ context_name | upper }}_H
+#define {{ prefix | upper }}_{{ context_name | upper }}_H
+
+typedef struct {{ prefix }}_{{ context_name }}* {{ prefix }}_{{ context_name }}Ptr;
+
+{{ prefix }}_{{ context_name }}Ptr {{ prefix }}_{{ context_name }}_create(void);
+void {{ prefix }}_{{ context_name }}_destroy({{ prefix }}_{{ context_name }}Ptr instance);
+
+/* Event functions */
+{% set state_list = states.split(',') %}
+{% for state in state_list %}
+void {{ prefix }}_{{ context_name }}_{{ state | trim }}({{ prefix }}_{{ context_name }}Ptr instance);
+{% endfor %}
+
+#endif /* {{ prefix | upper }}_{{ context_name | upper }}_H */
