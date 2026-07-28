@@ -1,0 +1,33 @@
+#include "{{ prefix }}_{{ state_name }}.h"
+#include "{{ prefix }}_{{ state_name }}Internal.h"
+#include <stdlib.h>
+
+{% set event_list = events.split(',') %}
+
+/* Default implementations */
+{% for event in event_list %}
+static void default{{ event | trim | capitalize }}({{ prefix }}_{{ state_name }}Ptr state)
+{
+    (void)state;
+    /* Default behavior for {{ event }} event */
+}
+{% endfor %}
+
+void
+{{ prefix }}_{{ state_name }}_defaultImplementation({{ prefix }}_{{ state_name }}Ptr state)
+{
+    {% for event in event_list %}
+    state->{{ event | trim }} = default{{ event | trim | capitalize }};
+    {% endfor %}
+}
+
+/* Transition functions */
+{% for event in event_list %}
+void
+{{ prefix }}_{{ state_name }}_transitionTo{{ event | trim | capitalize }}({{ prefix }}_{{ state_name }}Ptr state)
+{
+    {{ prefix }}_{{ state_name }}_defaultImplementation(state);
+    /* Override specific event handlers for {{ event }} state */
+    /* state->{{ event | trim }} = ...; */
+}
+{% endfor %}
