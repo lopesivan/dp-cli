@@ -1,0 +1,1 @@
+"""Python Command pattern template."""
