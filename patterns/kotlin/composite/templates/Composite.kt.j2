@@ -1,0 +1,15 @@
+package {{ package }}
+
+class {{ composite_class }} : {{ component_class }} {
+    private val children = mutableListOf<{{ component_class }}>()
+
+    fun {{ add_method }}(child: {{ component_class }}) {
+        children.add(child)
+    }
+
+    override fun {{ operation_method }}(): String {
+        return children.joinToString(separator = "+", prefix = "(", postfix = ")") {
+            it.{{ operation_method }}()
+        }
+    }
+}
