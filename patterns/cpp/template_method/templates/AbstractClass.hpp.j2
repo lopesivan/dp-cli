@@ -1,0 +1,18 @@
+#pragma once
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ abstract_class }} {
+public:
+    virtual ~{{ abstract_class }}() = default;
+
+    void {{ template_method_name }}();
+
+protected:
+    virtual void {{ step1_method }}() = 0;
+    virtual void {{ step2_method }}() = 0;
+    virtual void {{ hook_method }}() {}
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
