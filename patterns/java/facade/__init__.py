@@ -1,0 +1,1 @@
+"""Java Facade pattern template."""
