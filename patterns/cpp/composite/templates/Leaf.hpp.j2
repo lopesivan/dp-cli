@@ -1,0 +1,17 @@
+#pragma once
+#include "{{ component_class }}.hpp"
+{% if namespace %}
+namespace {{ namespace }} {
+{% endif %}
+class {{ leaf_class }} : public {{ component_class }} {
+public:
+    explicit {{ leaf_class }}(std::string name) : name_(std::move(name)) {}
+
+    std::string {{ operation_method }}() const override { return name_; }
+
+private:
+    std::string name_;
+};
+{% if namespace %}
+}  // namespace {{ namespace }}
+{% endif %}
