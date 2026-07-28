@@ -1,0 +1,48 @@
+pattern: decorator
+description: Decorator C++ adicionando comportamento a um Component sem alterar sua interface.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: component_class
+    default: Component
+    prompt: Nome da interface Component
+    required: true
+  - name: concrete_component_class
+    default: ConcreteComponent
+    prompt: Nome do ConcreteComponent
+    required: true
+  - name: decorator_class
+    default: Decorator
+    prompt: Nome da classe base Decorator
+    required: true
+  - name: concrete_decorator_class
+    default: ConcreteDecorator
+    prompt: Nome do ConcreteDecorator
+    required: true
+  - name: operation_method
+    default: Operation
+    prompt: Nome do método decorado
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: Component.hpp.j2
+    output_path: "{{ header_dir }}/{{ component_class }}.hpp"
+  - template: ConcreteComponent.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_component_class }}.hpp"
+  - template: Decorator.hpp.j2
+    output_path: "{{ header_dir }}/{{ decorator_class }}.hpp"
+  - template: Decorator.cpp.j2
+    output_path: "{{ source_dir }}/{{ decorator_class }}.cpp"
+  - template: ConcreteDecorator.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_decorator_class }}.hpp"
+  - template: ConcreteDecorator.cpp.j2
+    output_path: "{{ source_dir }}/{{ concrete_decorator_class }}.cpp"
