@@ -1,0 +1,1 @@
+"""Java Composite pattern template."""
