@@ -1,0 +1,46 @@
+pattern: factory
+description: Factory Method C++ com Creator delegando a criação de Product para subclasses.
+fields:
+  - name: namespace
+    default: app
+    prompt: Namespace C++
+    required: true
+  - name: product_class
+    default: Product
+    prompt: Nome da interface Product
+    required: true
+  - name: concrete_product_class
+    default: ConcreteProduct
+    prompt: Nome do ConcreteProduct
+    required: true
+  - name: creator_class
+    default: Creator
+    prompt: Nome da classe Creator
+    required: true
+  - name: concrete_creator_class
+    default: ConcreteCreator
+    prompt: Nome do ConcreteCreator
+    required: true
+  - name: factory_method
+    default: CreateProduct
+    prompt: Nome do factory method
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: Product.hpp.j2
+    output_path: "{{ header_dir }}/{{ product_class }}.hpp"
+  - template: ConcreteProduct.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_product_class }}.hpp"
+  - template: Creator.hpp.j2
+    output_path: "{{ header_dir }}/{{ creator_class }}.hpp"
+  - template: ConcreteCreator.hpp.j2
+    output_path: "{{ header_dir }}/{{ concrete_creator_class }}.hpp"
+  - template: ConcreteCreator.cpp.j2
+    output_path: "{{ source_dir }}/{{ concrete_creator_class }}.cpp"
