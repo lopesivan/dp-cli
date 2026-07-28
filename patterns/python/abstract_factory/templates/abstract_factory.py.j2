@@ -1,0 +1,59 @@
+from abc import ABC, abstractmethod
+
+
+class {{ product_a_class }}(ABC):
+    @abstractmethod
+    def name(self) -> str:
+        ...
+
+
+class {{ product_b_class }}(ABC):
+    @abstractmethod
+    def name(self) -> str:
+        ...
+
+
+class ConcreteProductA1({{ product_a_class }}):
+    def name(self) -> str:
+        return "ConcreteProductA1"
+
+
+class ConcreteProductA2({{ product_a_class }}):
+    def name(self) -> str:
+        return "ConcreteProductA2"
+
+
+class ConcreteProductB1({{ product_b_class }}):
+    def name(self) -> str:
+        return "ConcreteProductB1"
+
+
+class ConcreteProductB2({{ product_b_class }}):
+    def name(self) -> str:
+        return "ConcreteProductB2"
+
+
+class {{ abstract_factory_class }}(ABC):
+    @abstractmethod
+    def {{ create_product_a_method }}(self) -> {{ product_a_class }}:
+        ...
+
+    @abstractmethod
+    def {{ create_product_b_method }}(self) -> {{ product_b_class }}:
+        ...
+
+
+class {{ concrete_factory1_class }}({{ abstract_factory_class }}):
+    def {{ create_product_a_method }}(self) -> {{ product_a_class }}:
+        return ConcreteProductA1()
+
+    def {{ create_product_b_method }}(self) -> {{ product_b_class }}:
+        return ConcreteProductB1()
+
+
+class {{ concrete_factory2_class }}({{ abstract_factory_class }}):
+    def {{ create_product_a_method }}(self) -> {{ product_a_class }}:
+        return ConcreteProductA2()
+
+    def {{ create_product_b_method }}(self) -> {{ product_b_class }}:
+        return ConcreteProductB2()
