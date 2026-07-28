@@ -1,0 +1,48 @@
+pattern: reactor
+description: REACTOR Pattern em C para demultiplexação síncrona de eventos com poll/select.
+fields:
+  - name: prefix
+    default: app
+    prompt: Prefixo para as funções
+    required: true
+  - name: reactor_name
+    default: Reactor
+    prompt: Nome do Reactor
+    required: true
+  - name: handle_type
+    default: Handle
+    prompt: Tipo do handle (ex: int para sockets)
+    required: true
+  - name: max_handles
+    default: 32
+    prompt: Número máximo de handles registrados
+    required: true
+  - name: event_handler_name
+    default: EventHandler
+    prompt: Nome da interface EventHandler
+    required: true
+  - name: get_handle_method
+    default: getHandle
+    prompt: Nome do método que obtém o handle
+    required: true
+  - name: handle_event_method
+    default: handleEvent
+    prompt: Nome do método que processa o evento
+    required: true
+  - name: header_dir
+    default: include
+    prompt: Diretório do cabeçalho
+    required: true
+  - name: source_dir
+    default: src
+    prompt: Diretório do código-fonte
+    required: true
+outputs:
+  - template: handle.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ handle_type }}.h"
+  - template: event_handler.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ event_handler_name }}.h"
+  - template: reactor.h.j2
+    output_path: "{{ header_dir }}/{{ prefix }}_{{ reactor_name }}.h"
+  - template: reactor.c.j2
+    output_path: "{{ source_dir }}/{{ prefix }}_{{ reactor_name }}.c"
