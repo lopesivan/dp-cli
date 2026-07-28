@@ -1,0 +1,18 @@
+#ifndef {{ prefix | upper }}_{{ reactor_name | upper }}_H
+#define {{ prefix | upper }}_{{ reactor_name | upper }}_H
+
+#include "{{ prefix }}_{{ event_handler_name }}.h"
+
+/* Register an event handler with the Reactor */
+void {{ prefix }}_{{ reactor_name }}_Register({{ prefix }}_{{ event_handler_name }}* handler);
+
+/* Unregister an event handler from the Reactor */
+void {{ prefix }}_{{ reactor_name }}_Unregister({{ prefix }}_{{ event_handler_name }}* handler);
+
+/* Run the event loop */
+void {{ prefix }}_{{ reactor_name }}_HandleEvents(void);
+
+/* Cleanup the Reactor */
+void {{ prefix }}_{{ reactor_name }}_Cleanup(void);
+
+#endif /* {{ prefix | upper }}_{{ reactor_name | upper }}_H */
