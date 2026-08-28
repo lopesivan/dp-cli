@@ -10,3 +10,20 @@ public class Main {
         invoker.executeCommand();
     }
 }
+
+/*
+ * Segue um exemplo abaixo:
+ *
+package com.example.command;
+
+public class Main {
+    public static void main(String[] args) {
+        Light receiver = new Light();
+        Command command = new LightOnCommand(receiver);
+
+        RemoteControl invoker = new RemoteControl();
+        invoker.setCommand(command);
+        invoker.executeCommand();
+    }
+}
+*/
