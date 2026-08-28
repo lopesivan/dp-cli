@@ -1,0 +1,12 @@
+package {{ package }};
+
+public class Main {
+    public static void main(String[] args) {
+        {{ receiver_class }} receiver = new {{ receiver_class }}();
+        {{ command_class }} command = new {{ concrete_command_class }}(receiver);
+
+        {{ invoker_class }} invoker = new {{ invoker_class }}();
+        invoker.setCommand(command);
+        invoker.executeCommand();
+    }
+}

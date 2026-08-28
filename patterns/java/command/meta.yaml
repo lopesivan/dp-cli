@@ -1,3 +1,4 @@
+---
 pattern: command
 description: Command Java com Invoker, Receiver e ConcreteCommand.
 fields:
@@ -31,10 +32,12 @@ fields:
     required: true
 outputs:
   - template: Command.java.j2
-    output_path: "{{ output_dir }}/{{ command_class }}.java"
+    output_path: '{{ output_dir }}/{{ command_class }}.java'
   - template: Receiver.java.j2
-    output_path: "{{ output_dir }}/{{ receiver_class }}.java"
+    output_path: '{{ output_dir }}/{{ receiver_class }}.java'
   - template: ConcreteCommand.java.j2
-    output_path: "{{ output_dir }}/{{ concrete_command_class }}.java"
+    output_path: '{{ output_dir }}/{{ concrete_command_class }}.java'
   - template: Invoker.java.j2
-    output_path: "{{ output_dir }}/{{ invoker_class }}.java"
+    output_path: '{{ output_dir }}/{{ invoker_class }}.java'
+  - template: Main.java.j2
+    output_path: '{{ output_dir }}/Main.java'
