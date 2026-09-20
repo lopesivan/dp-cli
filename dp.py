@@ -31,7 +31,7 @@ def build_parser(registry: PatternRegistry) -> argparse.ArgumentParser:
     languages = parser.add_mutually_exclusive_group()
     for language in sorted(registry):
         languages.add_argument(
-            f"--{language}",
+            f"-{language}",
             action="store_const",
             const=language,
             dest="language",
