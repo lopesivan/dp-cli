@@ -196,7 +196,7 @@ function M.generate(language, pattern)
   local path = key_path()
   local key_exists = vim.uv.fs_stat(path) ~= nil
 
-  open_terminal({ "--" .. language, pattern }, function()
+  open_terminal({ "-" .. language, pattern }, function()
     if not key_exists then
       edit_file(path)
     end
