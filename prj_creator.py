@@ -454,12 +454,20 @@ def create_kotlin(name: str) -> None:
 
     bootstrap_path.parent.mkdir(parents=True, exist_ok=True)
 
-    bootstrap_script = '''#!/usr/bin/env bash
-set -e # Encerra em caso de erro
-set -u # Trata variáveis não definidas como erro
+    bootstrap_script = rf'''#!/usr/bin/env bash
+set -e
+set -u
 set -o pipefail
 
-gradle init --type kotlin-application
+echo "1" | ./gradlew init \
+    --type kotlin-application \
+    --dsl kotlin \
+    --test-framework junit-jupiter \
+    --java-version 26 \
+    --package br.eng.ivanlopes.{name} \
+    --project-name {name} \
+    --incubating \
+    --overwrite
 
 exit 0
 '''
