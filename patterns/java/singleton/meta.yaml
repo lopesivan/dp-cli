@@ -24,5 +24,4 @@ fields:
     required: true
 outputs:
   - template: Singleton.java.j2
-    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ class_name\
-      \ }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ class_name }}.java"
