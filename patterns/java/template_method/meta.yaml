@@ -30,11 +30,11 @@ fields:
     prompt: Nome do hook opcional (passo com implementação padrão)
     required: true
   - name: output_dir
-    default: src/main/java/com/example/app
+    default: src/main/java
     prompt: Diretório de saída
     required: true
 outputs:
   - template: AbstractClass.java.j2
-    output_path: "{{ output_dir }}/{{ abstract_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ abstract_class }}.java"
   - template: ConcreteClass.java.j2
-    output_path: "{{ output_dir }}/{{ concrete_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_class }}.java"

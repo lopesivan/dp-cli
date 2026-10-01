@@ -38,13 +38,13 @@ fields:
     prompt: Método de notificação
     required: true
   - name: output_dir
-    default: src/main/java/com/example/app
+    default: src/main/java
     prompt: Diretório de saída
     required: true
 outputs:
   - template: Observer.java.j2
-    output_path: "{{ output_dir }}/{{ observer_interface }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ observer_interface }}.java"
   - template: Subject.java.j2
-    output_path: "{{ output_dir }}/{{ subject_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ subject_class }}.java"
   - template: ConcreteObserver.java.j2
-    output_path: "{{ output_dir }}/{{ concrete_observer }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_observer }}.java"

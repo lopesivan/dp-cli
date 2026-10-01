@@ -26,15 +26,15 @@ fields:
     prompt: Nome do método decorado
     required: true
   - name: output_dir
-    default: src/main/java/com/example/app
+    default: src/main/java
     prompt: Diretório de saída
     required: true
 outputs:
   - template: Component.java.j2
-    output_path: "{{ output_dir }}/{{ component_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ component_class }}.java"
   - template: ConcreteComponent.java.j2
-    output_path: "{{ output_dir }}/{{ concrete_component_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_component_class }}.java"
   - template: Decorator.java.j2
-    output_path: "{{ output_dir }}/{{ decorator_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ decorator_class }}.java"
   - template: ConcreteDecorator.java.j2
-    output_path: "{{ output_dir }}/{{ concrete_decorator_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_decorator_class }}.java"

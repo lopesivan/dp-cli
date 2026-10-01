@@ -26,15 +26,15 @@ fields:
     prompt: Nome do método decorado
     required: true
   - name: output_dir
-    default: src/main/kotlin/com/example/app
+    default: src/main/kotlin
     prompt: Diretório de saída
     required: true
 outputs:
   - template: Component.kt.j2
-    output_path: "{{ output_dir }}/{{ component_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ component_class }}.kt"
   - template: ConcreteComponent.kt.j2
-    output_path: "{{ output_dir }}/{{ concrete_component_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_component_class }}.kt"
   - template: Decorator.kt.j2
-    output_path: "{{ output_dir }}/{{ decorator_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ decorator_class }}.kt"
   - template: ConcreteDecorator.kt.j2
-    output_path: "{{ output_dir }}/{{ concrete_decorator_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_decorator_class }}.kt"

@@ -27,17 +27,17 @@ fields:
     prompt: Nome do método executado no Receiver
     required: true
   - name: output_dir
-    default: src/main/java/com/example/app
+    default: src/main/java
     prompt: Diretório de saída
     required: true
 outputs:
   - template: Command.java.j2
-    output_path: '{{ output_dir }}/{{ command_class }}.java'
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ command_class }}.java"
   - template: Receiver.java.j2
-    output_path: '{{ output_dir }}/{{ receiver_class }}.java'
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ receiver_class }}.java"
   - template: ConcreteCommand.java.j2
-    output_path: '{{ output_dir }}/{{ concrete_command_class }}.java'
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_command_class }}.java"
   - template: Invoker.java.j2
-    output_path: '{{ output_dir }}/{{ invoker_class }}.java'
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ invoker_class }}.java"
   - template: Main.java.j2
-    output_path: '{{ output_dir }}/Main.java'
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/Main.java"

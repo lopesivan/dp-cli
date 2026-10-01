@@ -26,13 +26,13 @@ fields:
     prompt: Nome do método que adiciona um filho ao Composite
     required: true
   - name: output_dir
-    default: src/main/java/com/example/app
+    default: src/main/java
     prompt: Diretório de saída
     required: true
 outputs:
   - template: Component.java.j2
-    output_path: "{{ output_dir }}/{{ component_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ component_class }}.java"
   - template: Leaf.java.j2
-    output_path: "{{ output_dir }}/{{ leaf_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ leaf_class }}.java"
   - template: Composite.java.j2
-    output_path: "{{ output_dir }}/{{ composite_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ composite_class }}.java"

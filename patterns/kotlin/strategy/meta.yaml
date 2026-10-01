@@ -26,15 +26,15 @@ fields:
     prompt: Nome do método executado pela Strategy
     required: true
   - name: output_dir
-    default: src/main/kotlin/com/example/app
+    default: src/main/kotlin
     prompt: Diretório de saída
     required: true
 outputs:
   - template: Strategy.kt.j2
-    output_path: "{{ output_dir }}/{{ strategy_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ strategy_class }}.kt"
   - template: ConcreteStrategyA.kt.j2
-    output_path: "{{ output_dir }}/{{ concrete_strategy_a_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_strategy_a_class }}.kt"
   - template: ConcreteStrategyB.kt.j2
-    output_path: "{{ output_dir }}/{{ concrete_strategy_b_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_strategy_b_class }}.kt"
   - template: Context.kt.j2
-    output_path: "{{ output_dir }}/{{ context_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ context_class }}.kt"

@@ -26,13 +26,13 @@ fields:
     prompt: Nome do método existente no Adaptee
     required: true
   - name: output_dir
-    default: src/main/java/com/example/app
+    default: src/main/java
     prompt: Diretório de saída
     required: true
 outputs:
   - template: Target.java.j2
-    output_path: "{{ output_dir }}/{{ target_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ target_class }}.java"
   - template: Adaptee.java.j2
-    output_path: "{{ output_dir }}/{{ adaptee_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ adaptee_class }}.java"
   - template: Adapter.java.j2
-    output_path: "{{ output_dir }}/{{ adapter_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ adapter_class }}.java"

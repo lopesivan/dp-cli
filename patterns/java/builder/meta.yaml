@@ -22,15 +22,15 @@ fields:
     prompt: Nome da classe Director
     required: true
   - name: output_dir
-    default: src/main/java/com/example/app
+    default: src/main/java
     prompt: Diretório de saída
     required: true
 outputs:
   - template: Product.java.j2
-    output_path: "{{ output_dir }}/{{ product_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ product_class }}.java"
   - template: Builder.java.j2
-    output_path: "{{ output_dir }}/{{ builder_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ builder_class }}.java"
   - template: ConcreteBuilder.java.j2
-    output_path: "{{ output_dir }}/{{ concrete_builder_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_builder_class }}.java"
   - template: Director.java.j2
-    output_path: "{{ output_dir }}/{{ director_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ director_class }}.java"

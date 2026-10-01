@@ -26,15 +26,15 @@ fields:
     prompt: Nome do método executado no Receiver
     required: true
   - name: output_dir
-    default: src/main/kotlin/com/example/app
+    default: src/main/kotlin
     prompt: Diretório de saída
     required: true
 outputs:
   - template: Command.kt.j2
-    output_path: "{{ output_dir }}/{{ command_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ command_class }}.kt"
   - template: Receiver.kt.j2
-    output_path: "{{ output_dir }}/{{ receiver_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ receiver_class }}.kt"
   - template: ConcreteCommand.kt.j2
-    output_path: "{{ output_dir }}/{{ concrete_command_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_command_class }}.kt"
   - template: Invoker.kt.j2
-    output_path: "{{ output_dir }}/{{ invoker_class }}.kt"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ invoker_class }}.kt"

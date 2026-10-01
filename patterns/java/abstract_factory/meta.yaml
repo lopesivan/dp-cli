@@ -34,25 +34,25 @@ fields:
     prompt: Nome do método que cria ProductB
     required: true
   - name: output_dir
-    default: src/main/java/com/example/app
+    default: src/main/java
     prompt: Diretório de saída
     required: true
 outputs:
   - template: ProductA.java.j2
-    output_path: "{{ output_dir }}/{{ product_a_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ product_a_class }}.java"
   - template: ProductB.java.j2
-    output_path: "{{ output_dir }}/{{ product_b_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ product_b_class }}.java"
   - template: AbstractFactory.java.j2
-    output_path: "{{ output_dir }}/{{ abstract_factory_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ abstract_factory_class }}.java"
   - template: ConcreteProductA1.java.j2
-    output_path: "{{ output_dir }}/ConcreteProductA1.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/ConcreteProductA1.java"
   - template: ConcreteProductA2.java.j2
-    output_path: "{{ output_dir }}/ConcreteProductA2.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/ConcreteProductA2.java"
   - template: ConcreteProductB1.java.j2
-    output_path: "{{ output_dir }}/ConcreteProductB1.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/ConcreteProductB1.java"
   - template: ConcreteProductB2.java.j2
-    output_path: "{{ output_dir }}/ConcreteProductB2.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/ConcreteProductB2.java"
   - template: ConcreteFactory1.java.j2
-    output_path: "{{ output_dir }}/{{ concrete_factory1_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_factory1_class }}.java"
   - template: ConcreteFactory2.java.j2
-    output_path: "{{ output_dir }}/{{ concrete_factory2_class }}.java"
+    output_path: "{{ output_dir }}/{{ package | replace('.', '/') }}/{{ concrete_factory2_class }}.java"
